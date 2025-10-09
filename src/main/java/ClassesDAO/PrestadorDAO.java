@@ -1,18 +1,19 @@
 package java.ClassesDAO;
 
 import java.ClassesPuras.Prestador;
+import java.ClassesPuras.BasePessoaDAO;
 import java.sql.*;
 
-public class PrestadorDAO {
+public class PrestadorDAO extends BasePessoaDAO{
 
-    public String getTabela() {
-        return "PRESTADORES";
-    }
+    //public String getTabela() {
+        //    return "PRESTADORES";
+    //}
 
     // Gravar
     public int incluirPrestador(Prestador prestador) throws SQLException {
 
-        String sql = "INSERT INTO " + getTabela() + " (prestador_cnpj, prestador_empresa, prestador_id) VALUES (?,?,?)";
+        String sql = "INSERT INTO PRESTADORES (prestador_cnpj, prestador_empresa, prestador_id) VALUES (?,?,?)";
 
         // Abre e fecha o conector
         try (Connection conn = ConnectionFactory.getConnection();
@@ -40,7 +41,7 @@ public class PrestadorDAO {
     // Consultar
     public Prestador consultarPrestador(Prestador prestador) throws SQLException {
 
-        String sql = "SELECT * FROM " + getTabela() + " WHERE prestador_id = ?";
+        String sql = "SELECT * FROM PRESTADORES WHERE prestador_id = ?";
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -64,7 +65,7 @@ public class PrestadorDAO {
     // Atualizar - Retorna boolean
     public boolean atualizarPrestador(Prestador prestador) throws SQLException {
 
-        String sql = "UPDATE " + getTabela() + " SET prestador_cnpj=?, prestador_empresa=? WHERE prestador_id=?";
+        String sql = "UPDATE PRESTADORES SET prestador_cnpj=?, prestador_empresa=? WHERE prestador_id=?";
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -79,7 +80,7 @@ public class PrestadorDAO {
 
     // Deletar - Retorna boolean
     public boolean deletarPrestador(Prestador prestador) throws SQLException {
-        String sql = "DELETE * FROM " + getTabela() + " WHERE prestador_id = ?";
+        String sql = "DELETE * FROM PRESTADORES WHERE prestador_id = ?";
         try (Connection conn = ConnectionFactory.getConnection();
 
              PreparedStatement stmt = conn.prepareStatement(sql)) {

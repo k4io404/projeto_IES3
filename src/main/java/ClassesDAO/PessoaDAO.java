@@ -2,7 +2,7 @@ package java.ClassesDAO;
 
 public class PessoaDAO extends BasePessoaDAO {
 
-    public String getTabela(){
+    //public String getTabela(){
         return "PESSOAS";
     }
 
