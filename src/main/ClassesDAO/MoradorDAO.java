@@ -2,20 +2,18 @@ package java.ClassesDAO;
 
 import java.ClassesPuras.Morador;
 import java.ClassesPuras.Prestador;
-import
 import java.sql.*;
 
-public class MoradorDAO extends BasePessoaDAO {
+public class MoradorDAO  {
 
-    // public String getTabela() {
-    //    //return "MORADORES";
-    //    return "PESSOAS";
-    //}
+    public String getTabela() {
+        return "MORADORES";
+    }
 
     // Gravar
     public int incluirMorador(Morador morador) throws SQLException {
 
-        String sql = "INSERT INTO MORADORES (morador_id) VALUES (?)";
+        String sql = "INSERT INTO " + getTabela() + " (morador_id) VALUES (?)";
 
         // Abre e fecha o conector
         try (Connection conn = ConnectionFactory.getConnection();
@@ -41,7 +39,7 @@ public class MoradorDAO extends BasePessoaDAO {
     // Consultar
     public Morador consultarMorador(Morador morador) throws SQLException {
 
-        String sql = "SELECT * FROM MORADORES WHERE morador_id = ?";
+        String sql = "SELECT * FROM " + getTabela() + " WHERE morador_id = ?";
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -66,7 +64,7 @@ public class MoradorDAO extends BasePessoaDAO {
     // Atualizar - Retorna boolean
     public boolean atualizarMorador(Morador morador) throws SQLException {
 
-        String sql = "UPDATE MORADORES SET morador_id=?";
+        String sql = "UPDATE " + getTabela() + " SET morador_id=?";
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -79,7 +77,7 @@ public class MoradorDAO extends BasePessoaDAO {
 
     // Deletar - Retorna boolean
     public boolean deletarMorador(Morador morador) throws SQLException {
-        String sql = "DELETE * FROM MORADORES WHERE pessoa_id = ?";
+        String sql = "DELETE * FROM " + getTabela() + " WHERE pessoa_id = ?";
         try (Connection conn = ConnectionFactory.getConnection();
 
              PreparedStatement stmt = conn.prepareStatement(sql)) {

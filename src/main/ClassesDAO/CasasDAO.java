@@ -1,27 +1,20 @@
 package java.ClassesDAO;
 
-import java.ClassesPuras.Morador;
-import java.ClassesPuras.Prestador;
-import
+import java.ClassesPuras.Casa;
 import java.sql.*;
 
-public class MoradorDAO extends BasePessoaDAO {
-
-    // public String getTabela() {
-    //    //return "MORADORES";
-    //    return "PESSOAS";
-    //}
+public class CasasDAO {
 
     // Gravar
-    public int incluirMorador(Morador morador) throws SQLException {
+    public int incluirCasa(Casa casa) throws SQLException {
 
-        String sql = "INSERT INTO MORADORES (morador_id) VALUES (?)";
+        String sql = "INSERT INTO CASAS (casa_ender) VALUES (?)";
 
         // Abre e fecha o conector
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
-            stmt.setInt(1, morador.getId());
+            stmt.setString(1, casa.getEndereco());
 
             // Linha afetada pela ação
             int affectedRows = stmt.executeUpdate();
@@ -38,55 +31,59 @@ public class MoradorDAO extends BasePessoaDAO {
         }
     }
 
-    // Consultar
-    public Morador consultarMorador(Morador morador) throws SQLException {
 
-        String sql = "SELECT * FROM MORADORES WHERE morador_id = ?";
+    // Consultar
+    public Casa consultarCasa(Casa casa) throws SQLException {
+
+        String sql = "SELECT * FROM CASAS WHERE casa_id = ?";
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setInt(1, morador.getId());
+            stmt.setInt(1, casa.getId());
 
             try (ResultSet rs = stmt.executeQuery()) {
 
                 // cursor mostra a linha n-1
                 if (rs.next()) {
-                    Morador m = new Morador();
-                    m.setId(rs.getInt("morador_id"));
-                    return m;
+                    Casa c = new Casa();
+                    c.setId(rs.getInt("morador_id"));
+                    return c;
                 }
                 return null;
             }
         }
     }
 
-    @Deprecated
-    // Cuidado, a discutir implementação. Alterar um ID único de morador pode causar prejuízos a coeerência do BD
-    // Atualizar - Retorna boolean
-    public boolean atualizarMorador(Morador morador) throws SQLException {
 
-        String sql = "UPDATE MORADORES SET morador_id=?";
+    @Deprecated
+    // Cuidado, a discutir implementação. Pode causar prejuízos a coeerência do modelo
+    // Atualizar - Retorna boolean
+    public boolean atualizarCasa(Casa casa) throws SQLException {
+
+        String sql = "UPDATE CASAS SET casa_ender=? WHERE casa_id = ?";
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setInt(1, morador.getId());
+            stmt.setString(1, casa.getEndereco());
+            stmt.setInt(2,casa.getId());
 
             return stmt.executeUpdate() > 0;
         }
     }
 
     // Deletar - Retorna boolean
-    public boolean deletarMorador(Morador morador) throws SQLException {
-        String sql = "DELETE * FROM MORADORES WHERE pessoa_id = ?";
+    public boolean deletarCasa(Casa casa) throws SQLException {
+        String sql = "DELETE * FROM CASAS WHERE casa_id = ?";
         try (Connection conn = ConnectionFactory.getConnection();
 
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setInt(1, morador.getId());
+            stmt.setInt(1, casa.getId());
 
             return stmt.executeUpdate() > 0;
         }
     }
+
 }

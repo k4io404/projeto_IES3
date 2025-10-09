@@ -6,12 +6,12 @@ import java.sql.*;
 public abstract class BasePessoaDAO {
 
     // Método Abstrato a ser implementado
-    // protected abstract String getTabela();
+    protected abstract String getTabela();
 
     // Gravar
     public int incluirPessoa(Pessoa pessoa) throws SQLException {
 
-        String sql = "INSERT INTO PESSOAS (pessoa_nome, pessoa_cpf, pessoa_email, pessoa_telefone, pessoa_data_nasc) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO " + getTabela() + " (pessoa_nome, pessoa_cpf, pessoa_email, pessoa_telefone, pessoa_data_nasc) VALUES (?,?,?,?,?)";
 
         // Abre e fecha o conector
         try (Connection conn = ConnectionFactory.getConnection();
@@ -43,7 +43,7 @@ public abstract class BasePessoaDAO {
     // Modificar para Array
     public Pessoa consultarPessoaGeral(Pessoa pessoa) throws SQLException {
 
-        String sql = "SELECT *  FROM PESSOAS WHERE pessoa_id = ?";
+        String sql = "SELECT *  FROM " + getTabela() + " WHERE pessoa_id = ?";
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -71,7 +71,7 @@ public abstract class BasePessoaDAO {
     // Consultar por CPF - Retorna um objeto do tipo pessoa
     public Pessoa consultarPessoaCpf(int cpf) throws SQLException {
 
-        String sql = "SELECT *  FROM PESSOAS WHERE pessoa_cpf = ?";
+        String sql = "SELECT *  FROM " + getTabela() + " WHERE pessoa_cpf = ?";
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -99,7 +99,7 @@ public abstract class BasePessoaDAO {
     // Consultar por Nome - Retorna um objeto do tipo pessoa
     public Pessoa consultarPessoaNome(String pessoa_nome) throws SQLException {
 
-        String sql = "SELECT *  FROM PESSOAS WHERE pessoa_nome = ?";
+        String sql = "SELECT *  FROM " + getTabela() + " WHERE pessoa_nome = ?";
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -133,7 +133,7 @@ public abstract class BasePessoaDAO {
     // Atualizar - Retorna boolean
     public boolean atualizarPessoa(Pessoa pessoa) throws SQLException {
 
-        String sql = "UPDATE PESSOAS SET pessoa_nome=?, pessoa_cpf=?, pessoa_email=?, pessoa_telefone=?, pessoa_data_nasc=? WHERE pessoa_id=?";
+        String sql = "UPDATE " + getTabela() + " SET pessoa_nome=?, pessoa_cpf=?, pessoa_email=?, pessoa_telefone=?, pessoa_data_nasc=? WHERE pessoa_id=?";
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -151,7 +151,7 @@ public abstract class BasePessoaDAO {
 
     // Deletar - Retorna boolean
     public boolean deletarPessoa(Pessoa pessoa) throws SQLException {
-        String sql = "DELETE * FROM PESSOAS WHERE pessoa_id = ?";
+        String sql = "DELETE * FROM " + getTabela() + " WHERE pessoa_id = ?";
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
