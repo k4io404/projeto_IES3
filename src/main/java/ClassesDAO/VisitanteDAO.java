@@ -1,7 +1,7 @@
 package java.ClassesDAO;
 
-import java.ClassesPuras.Visitante;
 import java.ClassesPuras.Morador;
+import java.ClassesPuras.Visitante;
 import java.sql.*;
 import java.time.LocalDate;
 

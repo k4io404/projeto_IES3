@@ -1,4 +1,4 @@
-package main.ClassesDAO;
+package java.ClassesDAO;
 import java.ClassesPuras.Acesso;
 import java.ClassesPuras.StatusAcesso;
 import java.ClassesPuras.TipoAcesso;

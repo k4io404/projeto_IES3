@@ -1,6 +1,8 @@
 package java.ClassesDAO;
 
-import java.ClassesPuras.*;
+import java.ClassesPuras.MoradorCasa;
+import java.ClassesDAO.ConnectionFactory;
+import java.ClassesUtil.TipoVinculo;
 import java.sql.*;
 
 public class MoradorCasaDAO {
@@ -34,7 +36,7 @@ public class MoradorCasaDAO {
     }
 
     // Consultar
-    public MoradorCasa consultarMoradorCasa(MoradorCasa moradorCasa) throws SQLException {
+    public java.ClassesPuras.MoradorCasa consultarMoradorCasa(MoradorCasa moradorCasa) throws SQLException {
 
         String sql = "SELECT * FROM MORADOR_CASA WHERE casa_id = ?";
 
@@ -50,7 +52,11 @@ public class MoradorCasaDAO {
                     MoradorCasa mc = new MoradorCasa();
                     mc.setMoradorId(rs.getInt("morador_Id"));
                     mc.setCasaId(rs.getInt("casa_id"));
-                    mc.setTipoVinculo(TipoVinculo.valueOf(rs.getString("tipo_vinculo")));
+                    mc.setTipoVinculo(
+                            TipoVinculo.valueOf(
+                                    rs.getString("tipo_vinculo")
+                            )
+                    );
                     return mc;
                 }
                 return null;

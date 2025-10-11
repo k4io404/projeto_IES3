@@ -1,7 +1,7 @@
 package java.ClassesDAO;
 
-import java.ClassesPuras.Prestador;
 import java.ClassesPuras.BasePessoaDAO;
+import java.ClassesPuras.Prestador;
 import java.sql.*;
 
 public class PrestadorDAO extends BasePessoaDAO{

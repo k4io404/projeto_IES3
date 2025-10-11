@@ -1,7 +1,6 @@
 package java.ClassesDAO;
 
 import java.ClassesPuras.Morador;
-import java.ClassesPuras.Prestador;
 import java.sql.*;
 
 public class MoradorDAO  {
