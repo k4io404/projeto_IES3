@@ -38,7 +38,7 @@ public class VeiculoDAO {
     }
 
     @Deprecated
-    // Cuidado, a discutir implementação. Alterar um ID único de morador pode causar prejuízos a coeerência do BD
+    // Cuidado, a discutir implementação. Alterar um ID único de veiculo pode causar prejuízos a coeerência do BD
     // Atualizar - Retorna boolean
     public boolean atualizarVeiculo(Veiculo veiculo) throws SQLException {
 
@@ -67,13 +67,6 @@ public class VeiculoDAO {
             stmt.setString(1, veiculo.getPlaca());
 
             try (ResultSet rs = stmt.executeQuery()) {
-
-                // VEICULOS
-                // vei_placa VARCHAR(8)
-                // pessoa_id INT
-                // vei_cor VARCHAR(20)
-                // vei_modelo VARCHAR(40
-
 
                 // cursor mostra a linha n-1
                 if (rs.next()) {
@@ -118,16 +111,26 @@ public class VeiculoDAO {
     }
 
     // Consultar Veiculo por Tipo Responsavel
-    public Veiculo[] consultarVeiculoResponsavel(Pessoa pessoa, String tipo) throws SQLException {
+    public Veiculo[] consultarVeiculoResponsavel(String tipo) throws SQLException {
 
         String sql;
 
+        // Também já vai buscar a pessoa, podemos retirar caso necessário a busca da pessoa
         if(tipo.equalsIgnoreCase("MORADOR")){
-            sql = "SELECT A.* FROM PESSOAS A LEFT JOIN MORADOR B ON A.pessoa_id = B.pessoa_id";
+            sql = "SELECT A.*, C.* \n" +
+                    "FROM PESSOAS A\n" +
+                    "INNER JOIN MORADOR B ON A.pessoa_id = B.pessoa_id\n" +
+                    "INNER JOIN VEICULOS C ON A.pessoa_id = C.pessoa_id;";
         } else if (tipo.equalsIgnoreCase("PRESTADOR")){
-            sql = "SELECT A.* FROM PESSOAS A LEFT JOIN PRESTADOR B ON A.pessoa_id = B.pessoa_id";
+            sql = "SELECT A.*, C.* \n" +
+                    "FROM PESSOAS A\n" +
+                    "INNER JOIN PRESTADOR B ON A.pessoa_id = B.pessoa_id\n" +
+                    "INNER JOIN VEICULOS C ON A.pessoa_id = C.pessoa_id;";
         } else if(tipo.equalsIgnoreCase("VISITANTE")){
-            sql = "SELECT A.* FROM PESSOAS A LEFT JOIN VISITANTE B ON A.pessoa_id = B.pessoa_id";
+            sql = "SELECT A.*, C.* \n" +
+                    "FROM PESSOAS A\n" +
+                    "INNER JOIN VISITANTE B ON A.pessoa_id = B.pessoa_id\n" +
+                    "INNER JOIN VEICULOS C ON A.pessoa_id = C.pessoa_id;";
         } else {
             throw new IllegalArgumentException("Tipo de pessoa inválido: " + tipo);
         }

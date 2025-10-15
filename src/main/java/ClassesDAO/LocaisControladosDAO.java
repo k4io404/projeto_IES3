@@ -72,10 +72,10 @@ public class LocaisControladosDAO {
         }
     }
 
-    // Consultar
+    // Consultar de forma geral
     public LocaisControlados[] consultarLocaisControladosGeral(LocaisControlados locaisControlados) throws SQLException {
 
-        String sql = "SELECT * FROM LOCAIS_CONTROLADOS WHERE local_nome = ?";
+        String sql = "SELECT * FROM LOCAIS_CONTROLADOS";
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {

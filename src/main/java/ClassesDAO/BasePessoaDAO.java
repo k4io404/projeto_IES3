@@ -128,11 +128,11 @@ public abstract class BasePessoaDAO {
         String sql;
 
         if(tipo.equalsIgnoreCase("MORADOR")){
-            sql = "SELECT A.* FROM PESSOAS A LEFT JOIN MORADOR B ON A.pessoa_id = B.pessoa_id";
+            sql = "SELECT A.* FROM PESSOAS A INNER JOIN MORADOR B ON A.pessoa_id = B.pessoa_id";
         } else if (tipo.equalsIgnoreCase("PRESTADOR")){
-            sql = "SELECT A.* FROM PESSOAS A LEFT JOIN PRESTADOR B ON A.pessoa_id = B.pessoa_id";
+            sql = "SELECT A.* FROM PESSOAS A INNER JOIN PRESTADOR B ON A.pessoa_id = B.pessoa_id";
         } else if(tipo.equalsIgnoreCase("VISITANTE")){
-            sql = "SELECT A.* FROM PESSOAS A LEFT JOIN VISITANTE B ON A.pessoa_id = B.pessoa_id";
+            sql = "SELECT A.* FROM PESSOAS A INNER JOIN VISITANTE B ON A.pessoa_id = B.pessoa_id";
         } else {
             throw new IllegalArgumentException("Tipo de pessoa inválido: " + tipo);
         }
