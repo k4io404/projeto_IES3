@@ -1,6 +1,9 @@
 package java.ClassesDAO;
 import java.ClassesPuras.LocaisControlados;
+import java.ClassesPuras.Pessoa;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LocaisControladosDAO {
 
@@ -46,7 +49,7 @@ public class LocaisControladosDAO {
     }
 
     // Consultar
-    public LocaisControlados consultarLocaisControlados(LocaisControlados locaisControlados) throws SQLException {
+    public LocaisControlados consultarLocaisControladosEspecificos(LocaisControlados locaisControlados) throws SQLException {
 
         String sql = "SELECT * FROM LOCAIS_CONTROLADOS WHERE local_nome = ?";
 
@@ -65,6 +68,32 @@ public class LocaisControladosDAO {
                     return l;
                 }
                 return null;
+            }
+        }
+    }
+
+    // Consultar
+    public LocaisControlados[] consultarLocaisControladosGeral(LocaisControlados locaisControlados) throws SQLException {
+
+        String sql = "SELECT * FROM LOCAIS_CONTROLADOS WHERE local_nome = ?";
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, locaisControlados.getLocalNome());
+
+            try (ResultSet rs = stmt.executeQuery()) {
+
+                List<LocaisControlados> listaLocaisControlados = new ArrayList<>();
+
+                // cursor mostra a linha n-1
+                while (rs.next()) {
+                    LocaisControlados l = new LocaisControlados();
+                    l.setLocalId(rs.getInt("local_id"));
+                    l.setLocalNome(rs.getString("local_id"));
+                    listaLocaisControlados.add(l);
+                }
+                return listaLocaisControlados.toArray(new LocaisControlados[0]);
             }
         }
     }

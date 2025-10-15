@@ -1,6 +1,10 @@
 package java.ClassesDAO;
+import java.ClassesPuras.Acesso;
+import java.ClassesPuras.Pessoa;
 import java.ClassesPuras.Veiculo;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class VeiculoDAO {
 
@@ -53,7 +57,7 @@ public class VeiculoDAO {
     }
 
     // Consultar
-    public Veiculo consultarVeiculo(Veiculo veiculo) throws SQLException {
+    public Veiculo consultarVeiculoEspecifico(Veiculo veiculo) throws SQLException {
 
         String sql = "SELECT * FROM VEICULOS WHERE vei_placa = ?";
 
@@ -81,6 +85,74 @@ public class VeiculoDAO {
                     return v;
                 }
                 return null;
+            }
+        }
+    }
+
+    // Consultar Veiculo Geral
+    public Veiculo[] consultarVeiculoGeral(Veiculo veiculo) throws SQLException {
+
+        String sql = "SELECT * FROM VEICULOS";
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, veiculo.getPlaca());
+
+            try (ResultSet rs = stmt.executeQuery()) {
+
+                List<Veiculo> listaVeiculos = new ArrayList<>();
+
+                // cursor mostra a linha n-1
+                while (rs.next()) {
+                    Veiculo v = new Veiculo();
+                    v.setPlaca(rs.getString("vei_placa"));
+                    v.setPesId(rs.getInt("pessoa_id"));
+                    v.setCor(rs.getString("vei_cor"));
+                    v.setModelo(rs.getString("vei_modelo"));
+                    listaVeiculos.add(v);
+                }
+                return listaVeiculos.toArray(new Veiculo[0]);
+            }
+        }
+    }
+
+    // Consultar Veiculo por Tipo Responsavel
+    public Veiculo[] consultarVeiculoResponsavel(Pessoa pessoa, String tipo) throws SQLException {
+
+        String sql;
+
+        if(tipo.equalsIgnoreCase("MORADOR")){
+            sql = "SELECT A.* FROM PESSOAS A LEFT JOIN MORADOR B ON A.pessoa_id = B.pessoa_id";
+        } else if (tipo.equalsIgnoreCase("PRESTADOR")){
+            sql = "SELECT A.* FROM PESSOAS A LEFT JOIN PRESTADOR B ON A.pessoa_id = B.pessoa_id";
+        } else if(tipo.equalsIgnoreCase("VISITANTE")){
+            sql = "SELECT A.* FROM PESSOAS A LEFT JOIN VISITANTE B ON A.pessoa_id = B.pessoa_id";
+        } else {
+            throw new IllegalArgumentException("Tipo de pessoa inválido: " + tipo);
+        }
+
+        Veiculo veiculo = new Veiculo() ;
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, veiculo.getPlaca());
+
+            try (ResultSet rs = stmt.executeQuery()) {
+
+                List<Veiculo> listaVeiculos = new ArrayList<>();
+
+                // cursor mostra a linha n-1
+                while (rs.next()) {
+                    Veiculo v = new Veiculo();
+                    v.setPlaca(rs.getString("vei_placa"));
+                    v.setPesId(rs.getInt("pessoa_id"));
+                    v.setCor(rs.getString("vei_cor"));
+                    v.setModelo(rs.getString("vei_modelo"));
+                    listaVeiculos.add(v);
+                }
+                return listaVeiculos.toArray(new Veiculo[0]);
             }
         }
     }

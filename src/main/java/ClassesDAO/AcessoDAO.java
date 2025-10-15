@@ -1,8 +1,8 @@
 package java.ClassesDAO;
-import java.ClassesPuras.Acesso;
-import java.ClassesPuras.StatusAcesso;
-import java.ClassesPuras.TipoAcesso;
+import java.ClassesPuras.*;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AcessoDAO {
 
@@ -17,7 +17,8 @@ public class AcessoDAO {
 
             stmt.setInt(1, acesso.getLocId());
             stmt.setInt(2, acesso.getPesId());
-            stmt.setTimestamp(3, Timestamp.valueOf(acesso.getData()));
+            stmt.setTimestamp(3, acesso.getData());
+            //stmt.setTimestamp(3, Timestamp.valueOf(acesso.getData()));
             stmt.setString(4, acesso.getTipoAcesso().name());
 
             // Linha afetada pela ação
@@ -43,7 +44,7 @@ public class AcessoDAO {
     }
 
     // Consultar
-    public Acesso consultarVeiculo(Acesso acesso) throws SQLException {
+    public Acesso consultarAcesso(Acesso acesso) throws SQLException {
 
         String sql = "SELECT * FROM ACESSOS WHERE acesso_id = ?";
 
@@ -53,14 +54,6 @@ public class AcessoDAO {
             stmt.setInt(1, acesso.getId());
 
             try (ResultSet rs = stmt.executeQuery()) {
-
-                //ACESSOS
-                // acesso_id INT
-                // local_id INT
-                // pessoa_id INT
-                // acesso_data DATETIME
-                // acesso_tipo ENUM(...)
-                // acesso_status ENUM(...)
 
                 // cursor mostra a linha n-1
                 if (rs.next()) {
@@ -74,6 +67,95 @@ public class AcessoDAO {
                     return a;
                 }
                 return null;
+            }
+        }
+    }
+
+    // Consultar relacionados a Local
+    public Acesso[] consultarAcessoLocal(Local local) throws SQLException {
+
+        String sql = "SELECT * FROM ACESSOS WHERE local_id = ?";
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, local.getId());
+
+            try (ResultSet rs = stmt.executeQuery()) {
+
+                List<Acesso> listaAcessos = new ArrayList<>();
+
+                // cursor mostra a linha n-1
+                while (rs.next()) {
+                    Acesso a = new Acesso();
+                    a.setId(rs.getInt("acesso_id"));
+                    a.setLocId(rs.getInt("local_id"));
+                    a.setPesId(rs.getInt("pessoa_id"));
+                    a.setData(rs.getDate("acesso_data"));
+                    a.setTipoAcesso(TipoAcesso.valueOf(rs.getString("acesso_tipo")));
+                    a.setStatusAcesso(StatusAcesso.valueOf(rs.getString("acesso_status")));
+                    listaAcessos.add(a);
+                }
+                return listaAcessos.toArray(new Acesso[0]);
+            }
+        }
+    }
+
+    // Consultar relacionados a Pessoas
+    public Acesso[] consultarAcessoPessoa(Pessoa pessoa) throws SQLException {
+
+        String sql = "SELECT * FROM ACESSOS WHERE pessoa_id = ?";
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, pessoa.getId());
+
+            try (ResultSet rs = stmt.executeQuery()) {
+
+                List<Acesso> listaAcessos = new ArrayList<>();
+
+                // cursor mostra a linha n-1
+                while (rs.next()) {
+                    Acesso a = new Acesso();
+                    a.setId(rs.getInt("acesso_id"));
+                    a.setLocId(rs.getInt("local_id"));
+                    a.setPesId(rs.getInt("pessoa_id"));
+                    a.setData(rs.getDate("acesso_data"));
+                    a.setTipoAcesso(TipoAcesso.valueOf(rs.getString("acesso_tipo")));
+                    a.setStatusAcesso(StatusAcesso.valueOf(rs.getString("acesso_status")));
+                    listaAcessos.add(a);
+                }
+                return listaAcessos.toArray(new Acesso[0]);
+            }
+        }
+    }
+
+    // Consultar relacionados a Pessoas
+    // Necessidade de Melhora no Try
+    public Acesso[] consultarAcessoOrderData( ) throws SQLException {
+
+        String sql = "SELECT * FROM ACESSOS ORDER BY acesso_data ASC";
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            try (ResultSet rs = stmt.executeQuery()) {
+
+                List<Acesso> listaAcessos = new ArrayList<>();
+
+                // cursor mostra a linha n-1
+                while (rs.next()) {
+                    Acesso a = new Acesso();
+                    a.setId(rs.getInt("acesso_id"));
+                    a.setLocId(rs.getInt("local_id"));
+                    a.setPesId(rs.getInt("pessoa_id"));
+                    a.setData(rs.getDate("acesso_data"));
+                    a.setTipoAcesso(TipoAcesso.valueOf(rs.getString("acesso_tipo")));
+                    a.setStatusAcesso(StatusAcesso.valueOf(rs.getString("acesso_status")));
+                    listaAcessos.add(a);
+                }
+                return listaAcessos.toArray(new Acesso[0]);
             }
         }
     }
