@@ -1,6 +1,11 @@
 package java.ClassesDAO;
+import java.ClassesPuras.Morador;
+import java.ClassesPuras.Prestador;
 import java.ClassesPuras.Servico;
+import java.ClassesPuras.Veiculo;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ServicoDAO {
 
@@ -34,20 +39,20 @@ public class ServicoDAO {
         }
     }
 
-    // Consultar
-    public Servico consultarServico(Servico servico) throws SQLException {
+    // Consultar Geral
+    public Servico[] consultarServico() throws SQLException {
 
-        String sql = "SELECT * FROM SERVICOS WHERE serv_id = ?";
+        String sql = "SELECT * FROM SERVICOS";
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setInt(1, servico.getId());
-
             try (ResultSet rs = stmt.executeQuery()) {
 
+                List<Servico> listaServico = new ArrayList<>();
+
                 // cursor mostra a linha n-1
-                if (rs.next()) {
+                while (rs.next()) {
                     Servico s = new Servico();
                     s.setId(rs.getInt("serv_id"));
                     s.setMorId(rs.getInt("morador_id"));
@@ -55,9 +60,77 @@ public class ServicoDAO {
                     s.setServTipo(rs.getString("serv_tipo"));
                     s.setDataInicio(rs.getDate("data_inicio"));
                     s.setDataFim(rs.getDate("data_fim"));
-                    return s;
+                    listaServico.add(s);
                 }
-                return null;
+                return listaServico.toArray(new Servico[0]);
+            }
+        }
+    }
+
+    // Consultar serviços relacionados a um morador(arrayList)
+    public Servico[] consultarServicoMorador(Morador morador) throws SQLException {
+
+        String sql = "SELECT A.* " +
+                "FROM SERVICOS A " +
+                "INNER JOIN MORADOR B " +
+                "ON A.morador_id = B.morador_id" +
+                "WHERE A.morador_id = ?";
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, morador.getId());
+
+            try (ResultSet rs = stmt.executeQuery()) {
+
+                List<Servico> listaServico = new ArrayList<>();
+
+                // cursor mostra a linha n-1
+                while (rs.next()) {
+                    Servico s = new Servico();
+                    s.setId(rs.getInt("serv_id"));
+                    s.setMorId(rs.getInt("morador_id"));
+                    s.setPrestId(rs.getInt("prestador_id"));
+                    s.setServTipo(rs.getString("serv_tipo"));
+                    s.setDataInicio(rs.getDate("data_inicio"));
+                    s.setDataFim(rs.getDate("data_fim"));
+                    listaServico.add(s);
+                }
+                return listaServico.toArray(new Servico[0]);
+            }
+        }
+    }
+
+    // Consultar serviços relacionados a um prestador(arrayList)
+    public Servico[] consultarServicoPrestador(Prestador prestador) throws SQLException {
+
+        String sql = "SELECT A.* " +
+                "FROM SERVICOS A " +
+                "INNER JOIN PRESTADORES B " +
+                "ON A.prestador_id = B.prestador_id" +
+                "WHERE A.prestador_id = ?";
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, prestador.getId());
+
+            try (ResultSet rs = stmt.executeQuery()) {
+
+                List<Servico> listaServico = new ArrayList<>();
+
+                // cursor mostra a linha n-1
+                while (rs.next()) {
+                    Servico s = new Servico();
+                    s.setId(rs.getInt("serv_id"));
+                    s.setMorId(rs.getInt("morador_id"));
+                    s.setPrestId(rs.getInt("prestador_id"));
+                    s.setServTipo(rs.getString("serv_tipo"));
+                    s.setDataInicio(rs.getDate("data_inicio"));
+                    s.setDataFim(rs.getDate("data_fim"));
+                    listaServico.add(s);
+                }
+                return listaServico.toArray(new Servico[0]);
             }
         }
     }

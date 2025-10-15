@@ -1,6 +1,10 @@
 package java.ClassesDAO;
+import java.ClassesPuras.Acesso;
+import java.ClassesPuras.Pessoa;
 import java.ClassesPuras.Veiculo;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class VeiculoDAO {
 
@@ -34,7 +38,7 @@ public class VeiculoDAO {
     }
 
     @Deprecated
-    // Cuidado, a discutir implementação. Alterar um ID único de morador pode causar prejuízos a coeerência do BD
+    // Cuidado, a discutir implementação. Alterar um ID único de veiculo pode causar prejuízos a coeerência do BD
     // Atualizar - Retorna boolean
     public boolean atualizarVeiculo(Veiculo veiculo) throws SQLException {
 
@@ -53,7 +57,7 @@ public class VeiculoDAO {
     }
 
     // Consultar
-    public Veiculo consultarVeiculo(Veiculo veiculo) throws SQLException {
+    public Veiculo consultarVeiculoEspecifico(Veiculo veiculo) throws SQLException {
 
         String sql = "SELECT * FROM VEICULOS WHERE vei_placa = ?";
 
@@ -63,13 +67,6 @@ public class VeiculoDAO {
             stmt.setString(1, veiculo.getPlaca());
 
             try (ResultSet rs = stmt.executeQuery()) {
-
-                // VEICULOS
-                // vei_placa VARCHAR(8)
-                // pessoa_id INT
-                // vei_cor VARCHAR(20)
-                // vei_modelo VARCHAR(40
-
 
                 // cursor mostra a linha n-1
                 if (rs.next()) {
@@ -81,6 +78,84 @@ public class VeiculoDAO {
                     return v;
                 }
                 return null;
+            }
+        }
+    }
+
+    // Consultar Veiculo Geral
+    public Veiculo[] consultarVeiculoGeral(Veiculo veiculo) throws SQLException {
+
+        String sql = "SELECT * FROM VEICULOS";
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, veiculo.getPlaca());
+
+            try (ResultSet rs = stmt.executeQuery()) {
+
+                List<Veiculo> listaVeiculos = new ArrayList<>();
+
+                // cursor mostra a linha n-1
+                while (rs.next()) {
+                    Veiculo v = new Veiculo();
+                    v.setPlaca(rs.getString("vei_placa"));
+                    v.setPesId(rs.getInt("pessoa_id"));
+                    v.setCor(rs.getString("vei_cor"));
+                    v.setModelo(rs.getString("vei_modelo"));
+                    listaVeiculos.add(v);
+                }
+                return listaVeiculos.toArray(new Veiculo[0]);
+            }
+        }
+    }
+
+    // Consultar Veiculo por Tipo Responsavel
+    public Veiculo[] consultarVeiculoResponsavel(String tipo) throws SQLException {
+
+        String sql;
+
+        // Também já vai buscar a pessoa, podemos retirar caso necessário a busca da pessoa
+        if(tipo.equalsIgnoreCase("MORADOR")){
+            sql = "SELECT A.*, C.* \n" +
+                    "FROM PESSOAS A\n" +
+                    "INNER JOIN MORADOR B ON A.pessoa_id = B.pessoa_id\n" +
+                    "INNER JOIN VEICULOS C ON A.pessoa_id = C.pessoa_id;";
+        } else if (tipo.equalsIgnoreCase("PRESTADOR")){
+            sql = "SELECT A.*, C.* \n" +
+                    "FROM PESSOAS A\n" +
+                    "INNER JOIN PRESTADOR B ON A.pessoa_id = B.pessoa_id\n" +
+                    "INNER JOIN VEICULOS C ON A.pessoa_id = C.pessoa_id;";
+        } else if(tipo.equalsIgnoreCase("VISITANTE")){
+            sql = "SELECT A.*, C.* \n" +
+                    "FROM PESSOAS A\n" +
+                    "INNER JOIN VISITANTE B ON A.pessoa_id = B.pessoa_id\n" +
+                    "INNER JOIN VEICULOS C ON A.pessoa_id = C.pessoa_id;";
+        } else {
+            throw new IllegalArgumentException("Tipo de pessoa inválido: " + tipo);
+        }
+
+        Veiculo veiculo = new Veiculo() ;
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, veiculo.getPlaca());
+
+            try (ResultSet rs = stmt.executeQuery()) {
+
+                List<Veiculo> listaVeiculos = new ArrayList<>();
+
+                // cursor mostra a linha n-1
+                while (rs.next()) {
+                    Veiculo v = new Veiculo();
+                    v.setPlaca(rs.getString("vei_placa"));
+                    v.setPesId(rs.getInt("pessoa_id"));
+                    v.setCor(rs.getString("vei_cor"));
+                    v.setModelo(rs.getString("vei_modelo"));
+                    listaVeiculos.add(v);
+                }
+                return listaVeiculos.toArray(new Veiculo[0]);
             }
         }
     }

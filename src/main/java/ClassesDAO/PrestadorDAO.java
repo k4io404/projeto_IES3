@@ -1,14 +1,10 @@
 package java.ClassesDAO;
 
+import java.ClassesDAO.BasePessoaDAO;
 import java.ClassesPuras.Prestador;
-import java.ClassesPuras.BasePessoaDAO;
 import java.sql.*;
 
 public class PrestadorDAO extends BasePessoaDAO{
-
-    //public String getTabela() {
-        //    return "PRESTADORES";
-    //}
 
     // Gravar
     public int incluirPrestador(Prestador prestador) throws SQLException {

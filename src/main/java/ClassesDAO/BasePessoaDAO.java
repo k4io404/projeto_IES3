@@ -2,11 +2,10 @@ package java.ClassesDAO;
 
 import java.ClassesPuras.Pessoa;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class BasePessoaDAO {
-
-    // Método Abstrato a ser implementado
-    protected abstract String getTabela();
 
     // Gravar
     public int incluirPessoa(Pessoa pessoa) throws SQLException {
@@ -38,22 +37,19 @@ public abstract class BasePessoaDAO {
         }
     }
 
-    // Consultar Geral - Retorna um objeto do tipo pessoa
-    // TODO
-    // Modificar para Array
-    public Pessoa consultarPessoaGeral(Pessoa pessoa) throws SQLException {
+    // Consultar Geral - Retorna um arrayList
+    public Pessoa[] consultarPessoaGeral( ) throws SQLException {
 
-        String sql = "SELECT *  FROM PESSOAS WHERE pessoa_id = ?";
+        String sql = "SELECT *  FROM PESSOAS";
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setInt(1, pessoa.getId());
-
             try (ResultSet rs = stmt.executeQuery()) {
 
-                // cursor mostra a linha n-1
-                if (rs.next()) {
+                List<Pessoa> listaPessoas = new ArrayList<>();
+
+                while (rs.next()) {
                     Pessoa p = new Pessoa();
                     p.setId(rs.getInt("pessoa_id"));
                     p.setNome(rs.getString("pessoa_nome"));
@@ -61,9 +57,10 @@ public abstract class BasePessoaDAO {
                     p.setEmail(rs.getString("pessoa_email"));
                     p.setTelefone(rs.getString("pessoa_telefone"));
                     Date d = rs.getDate("pessoa_data_nasc");
-                    return p;
+                    p.setDataNasc(d);
+                    listaPessoas.add(p);
                 }
-                return null;
+                return listaPessoas.toArray(new Pessoa[0]);
             }
         }
     }
@@ -89,6 +86,7 @@ public abstract class BasePessoaDAO {
                     p.setEmail(rs.getString("pessoa_email"));
                     p.setTelefone(rs.getString("pessoa_telefone"));
                     Date d = rs.getDate("pessoa_data_nasc");
+                    p.setDataNasc(d);
                     return p;
                 }
                 return null;
@@ -117,6 +115,7 @@ public abstract class BasePessoaDAO {
                     p.setEmail(rs.getString("pessoa_email"));
                     p.setTelefone(rs.getString("pessoa_telefone"));
                     Date d = rs.getDate("pessoa_data_nasc");
+                    p.setDataNasc(d);
                     return p;
                 }
                 return null;
@@ -124,10 +123,44 @@ public abstract class BasePessoaDAO {
         }
     }
 
-    // Consultar por Tipo - Retorna um objeto do tipo pessoa
-    // TODO
-    public void consultarPessoaTipo(int cpf) throws SQLException {
+    public Pessoa[] consultaGeralPessoa(String tipo){
 
+        String sql;
+
+        if(tipo.equalsIgnoreCase("MORADOR")){
+            sql = "SELECT A.* FROM PESSOAS A INNER JOIN MORADOR B ON A.pessoa_id = B.pessoa_id";
+        } else if (tipo.equalsIgnoreCase("PRESTADOR")){
+            sql = "SELECT A.* FROM PESSOAS A INNER JOIN PRESTADOR B ON A.pessoa_id = B.pessoa_id";
+        } else if(tipo.equalsIgnoreCase("VISITANTE")){
+            sql = "SELECT A.* FROM PESSOAS A INNER JOIN VISITANTE B ON A.pessoa_id = B.pessoa_id";
+        } else {
+            throw new IllegalArgumentException("Tipo de pessoa inválido: " + tipo);
+        }
+
+        try (Connection conn = ConnectionFactory.getConnection();
+
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            try (ResultSet rs = stmt.executeQuery()) {
+
+                List<Pessoa> listaPessoas = new ArrayList<>();
+
+                while (rs.next()) {
+                    Pessoa p = new Pessoa();
+                    p.setId(rs.getInt("pessoa_id"));
+                    p.setNome(rs.getString("pessoa_nome"));
+                    p.setCpf(rs.getString("pessoa_cpf"));
+                    p.setEmail(rs.getString("pessoa_email"));
+                    p.setTelefone(rs.getString("pessoa_telefone"));
+                    Date d = rs.getDate("pessoa_data_nasc");
+                    p.setDataNasc(d);
+                    listaPessoas.add(p);
+                }
+                return listaPessoas.toArray(new Pessoa[0]);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     // Atualizar - Retorna boolean

@@ -1,16 +1,16 @@
 package java.ClassesPuras;
 import java.sql.Date;
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 public class Acesso {
     private int id;
     private int pesId;
     private int locId;
-    private LocalDateTime data;
+    private Timestamp data;
     private TipoAcesso tipoAcesso;
     private StatusAcesso statusAcesso;
 
-    public Acesso(int id, int pesId, int locId, LocalDateTime data, TipoAcesso tipoAcesso, StatusAcesso statusAcesso) {
+    public Acesso(int id, int pesId, int locId, Timestamp data, TipoAcesso tipoAcesso, StatusAcesso statusAcesso) {
         this.id = id;
         this.pesId = pesId;
         this.locId = locId;
@@ -46,7 +46,7 @@ public class Acesso {
         this.locId = locId;
     }
 
-    public LocalDateTime getData() {
+    public Timestamp getData() {
         return data;
     }
 

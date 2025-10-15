@@ -1,14 +1,9 @@
 package java.ClassesDAO;
 
 import java.ClassesPuras.Morador;
-import java.ClassesPuras.Prestador;
 import java.sql.*;
 
 public class MoradorDAO  {
-
-    // public String getTabela() {
-    //    return "MORADORES";
-    //}
 
     // Gravar
     public int incluirMorador(Morador morador) throws SQLException {
@@ -33,29 +28,6 @@ public class MoradorDAO  {
 
             // Retornar a linha afetada pela ação
             return affectedRows;
-        }
-    }
-
-    // Consultar
-    public Morador consultarMorador(Morador morador) throws SQLException {
-
-        String sql = "SELECT * FROM MORADORES WHERE morador_id = ?";
-
-        try (Connection conn = ConnectionFactory.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setInt(1, morador.getId());
-
-            try (ResultSet rs = stmt.executeQuery()) {
-
-                // cursor mostra a linha n-1
-                if (rs.next()) {
-                    Morador m = new Morador();
-                    m.setId(rs.getInt("morador_id"));
-                    return m;
-                }
-                return null;
-            }
         }
     }
 

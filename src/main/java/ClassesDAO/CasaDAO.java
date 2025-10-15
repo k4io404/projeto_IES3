@@ -1,12 +1,16 @@
 package java.ClassesDAO;
 
 import java.ClassesPuras.Casa;
+import java.ClassesPuras.MoradorCasa;
+import java.ClassesPuras.Pessoa;
+import java.ClassesUtil.TipoVinculo;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class CasasDAO {
-
+public class CasaDAO {
     // Gravar
-    public int incluirCasa(Casa casa) throws SQLException {
+    public int incluirMoradorCasa(Casa casa) throws SQLException {
 
         String sql = "INSERT INTO CASAS (casa_ender) VALUES (?)";
 
@@ -31,7 +35,6 @@ public class CasasDAO {
         }
     }
 
-
     // Consultar
     public Casa consultarCasa(Casa casa) throws SQLException {
 
@@ -47,7 +50,8 @@ public class CasasDAO {
                 // cursor mostra a linha n-1
                 if (rs.next()) {
                     Casa c = new Casa();
-                    c.setId(rs.getInt("morador_id"));
+                    c.setId(rs.getInt("casa_id"));
+                    c.setEndereco(rs.getString("casa_ender"));
                     return c;
                 }
                 return null;
@@ -55,27 +59,9 @@ public class CasasDAO {
         }
     }
 
-
-    @Deprecated
-    // Cuidado, a discutir implementação. Pode causar prejuízos a coeerência do modelo
-    // Atualizar - Retorna boolean
-    public boolean atualizarCasa(Casa casa) throws SQLException {
-
-        String sql = "UPDATE CASAS SET casa_ender=? WHERE casa_id = ?";
-
-        try (Connection conn = ConnectionFactory.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setString(1, casa.getEndereco());
-            stmt.setInt(2,casa.getId());
-
-            return stmt.executeUpdate() > 0;
-        }
-    }
-
     // Deletar - Retorna boolean
     public boolean deletarCasa(Casa casa) throws SQLException {
-        String sql = "DELETE * FROM CASAS WHERE casa_id = ?";
+        String sql = "DELETE * FROM CASAS WHERE casa_id=? ";
         try (Connection conn = ConnectionFactory.getConnection();
 
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -86,4 +72,26 @@ public class CasasDAO {
         }
     }
 
+    // Consultar casas no geral (arrayList)
+    public Casa[] consultarCasaGeral(Casa casa) throws SQLException {
+
+        String sql = "SELECT * FROM CASAS";
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            try (ResultSet rs = stmt.executeQuery()) {
+
+                List<Casa> listaCasa = new ArrayList<>();
+
+                // cursor mostra a linha n-1
+                while (rs.next()) {
+                    Casa c = new Casa();
+                    c.setId(rs.getInt("casa_id"));
+                    c.setEndereco(rs.getString("casa_ender"));
+                    listaCasa.add(c);
+                }
+                return listaCasa.toArray(new Casa[0]);
+            }
+        }
+    }
 }

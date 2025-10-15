@@ -1,7 +1,11 @@
 package java.ClassesDAO;
 
 import java.ClassesPuras.*;
+import java.ClassesDAO.ConnectionFactory;
+import java.ClassesUtil.TipoVinculo;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MoradorCasaDAO {
 
@@ -50,7 +54,11 @@ public class MoradorCasaDAO {
                     MoradorCasa mc = new MoradorCasa();
                     mc.setMoradorId(rs.getInt("morador_Id"));
                     mc.setCasaId(rs.getInt("casa_id"));
-                    mc.setTipoVinculo(TipoVinculo.valueOf(rs.getString("tipo_vinculo")));
+                    mc.setTipoVinculo(
+                            TipoVinculo.valueOf(
+                                    rs.getString("tipo_vinculo")
+                            )
+                    );
                     return mc;
                 }
                 return null;
@@ -58,7 +66,68 @@ public class MoradorCasaDAO {
         }
     }
 
+    // Consultar Casas relacionada a um Morador
+    public Casa[] consultarCasaMorador(Morador morador) throws SQLException {
 
+        String sql =  "SELECT A.* " +
+                "FROM PESSOAS A " +
+                "INNER JOIN MORADORCASA B ON A.pessoa_id = B.pessoa_id " +
+                "WHERE B.pessoa_id = ?";
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, morador.getId());
+
+            try (ResultSet rs = stmt.executeQuery()) {
+
+                List<Casa> listaCasa = new ArrayList<>();
+
+                // cursor mostra a linha n-1
+                while (rs.next()) {
+                    Casa c = new Casa();
+                    c.setEndereco(rs.getString("casa_ender"));
+                    c.setId(rs.getInt("casa_id"));
+                    listaCasa.add(c);
+                }
+                return listaCasa.toArray(new Casa[0]);
+            }
+        }
+    }
+
+    // Consultar Pessoas relacionada a uma Casa
+    public Pessoa[] consultarMoradorCasa(Casa casa) throws SQLException {
+
+        String sql =  "SELECT A.* " +
+                "FROM PESSOAS A " +
+                "INNER JOIN MORADORCASA B ON A.pessoa_id = B.pessoa_id " +
+                "WHERE A.casa_id = ?";
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, casa.getId());
+
+            try (ResultSet rs = stmt.executeQuery()) {
+
+                List<Pessoa> listaPessoas = new ArrayList<>();
+
+                // cursor mostra a linha n-1
+                while (rs.next()) {
+                    Pessoa p = new Pessoa();
+                    p.setId(rs.getInt("pessoa_id"));
+                    p.setNome(rs.getString("pessoa_nome"));
+                    p.setCpf(rs.getString("pessoa_cpf"));
+                    p.setEmail(rs.getString("pessoa_email"));
+                    p.setTelefone(rs.getString("pessoa_telefone"));
+                    Date d = rs.getDate("pessoa_data_nasc");
+                    p.setDataNasc(d);
+                    listaPessoas.add(p);
+                }
+                return listaPessoas.toArray(new Pessoa[0]);
+            }
+        }
+    }
 
     // Atualizar - Retorna boolean
     public boolean atualizarMoradorCasa(MoradorCasa moradorCasa) throws SQLException {
