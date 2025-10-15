@@ -37,6 +37,9 @@ public class MoradorCasa {
     public void setTipoVinculo(TipoVinculo tipoVinculo) {
         this.tipoVinculo = tipoVinculo;
     }
+
+    public void setTipoVinculo(java.ClassesUtil.TipoVinculo tipoVinculo) {
+    }
 }
 
 
