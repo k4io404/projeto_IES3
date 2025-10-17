@@ -1,6 +1,7 @@
 package ClassesDTO;
 
 public class AutorizacaoDTO {
+    private int id;
     private int pesId;
     private int locId;
     private int autorizacao;
@@ -9,6 +10,11 @@ public class AutorizacaoDTO {
         this.pesId = pesId;
         this.locId = locId;
         this.autorizacao = autorizacao;
+    }
+
+    public AutorizacaoDTO(int id,int pesId, int locId, int autorizacao ){
+        this(pesId,locId,autorizacao);
+        this.id = id;
     }
 
     public AutorizacaoDTO() {
@@ -41,7 +47,8 @@ public class AutorizacaoDTO {
     @Override
     public String toString() {
         return "AutorizacaoDTO{" +
-                "pesId=" + pesId +
+                "id=" + id +
+                ", pesId=" + pesId +
                 ", locId=" + locId +
                 ", autorizacao=" + autorizacao +
                 '}';

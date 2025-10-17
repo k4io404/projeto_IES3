@@ -4,9 +4,13 @@ public class CasaDTO{
     private int id;
     private String endereco;
 
-    public CasaDTO(int id, String endereco) {
-        this.id = id;
+    public CasaDTO(String endereco){
         this.endereco = endereco;
+    }
+
+    public CasaDTO(int id, String endereco) {
+        this(endereco);
+        this.id = id;
     }
 
     public CasaDTO() {

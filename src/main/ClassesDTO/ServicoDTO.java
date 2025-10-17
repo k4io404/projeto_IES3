@@ -10,13 +10,17 @@ public class ServicoDTO {
     private Date dataInicio;
     private Date dataFim;
 
-    public ServicoDTO(int id, int morId, int prestId, String servTipo, Date dataInicio, Date dataFim) {
-        this.id = id;
+    public ServicoDTO(int morId, int prestId, String servTipo, Date dataInicio, Date dataFim){
         this.morId = morId;
         this.prestId = prestId;
         this.servTipo = servTipo;
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
+    }
+
+    public ServicoDTO(int id, int morId, int prestId, String servTipo, Date dataInicio, Date dataFim) {
+        this(morId,prestId,servTipo,dataInicio,dataFim);
+        this.id = id;
     }
 
     public ServicoDTO() {

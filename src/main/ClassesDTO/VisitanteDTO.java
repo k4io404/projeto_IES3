@@ -6,12 +6,19 @@ public class VisitanteDTO extends PessoaDTO {
     private int morCadastraId;
     private Date dataAutorizacao;
 
+    public VisitanteDTO(String nome, String cpf, Date dataNasc, String telefone, String email, int morCadastraId, Date dataAutorizacao){
+        super(nome, cpf, dataNasc, telefone, email);
+        this.morCadastraId = morCadastraId;
+        this.dataAutorizacao = dataAutorizacao;
+    }
+
     public VisitanteDTO(int id, String nome, String cpf, Date dataNasc, String telefone, String email, int morCadastraId, Date dataAutorizacao) {
         super(id, nome, cpf, dataNasc, telefone, email);
         this.morCadastraId = morCadastraId;
         this.dataAutorizacao = dataAutorizacao;
     }
-    public VisitanteDTO(){};
+
+    public VisitanteDTO(){}
 
     public int getMorCadastraId() {
         return morCadastraId;

@@ -11,7 +11,11 @@ public class PessoaDTO {
     private String email;
 
     public PessoaDTO(int id, String nome, String cpf, Date dataNasc, String telefone, String email) {
+        this(nome,cpf,dataNasc,telefone,email);
         this.id = id;
+    }
+
+    public PessoaDTO(String nome, String cpf, Date dataNasc, String telefone, String email){
         this.nome = nome;
         this.cpf = cpf;
         this.dataNasc = dataNasc;

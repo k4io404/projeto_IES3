@@ -5,9 +5,12 @@ public class LocalControladoDTO {
     private int id;
     private String nome;
 
-    public LocalControladoDTO(int id, String nome) {
-        this.id = id;
+    public LocalControladoDTO(String nome){
         this.nome = nome;
+    }
+    public LocalControladoDTO(int id, String nome) {
+        this(nome);
+        this.id = id;
     }
 
     public LocalControladoDTO(){};

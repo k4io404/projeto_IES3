@@ -3,6 +3,7 @@ package ClassesDTO;
 import Util.TipoVinculo;
 
 public class MoradorCasaDTO {
+    private int id;
     private int moradorId;
     private int casaId;
     private TipoVinculo tipoVinculo;
@@ -11,6 +12,11 @@ public class MoradorCasaDTO {
         this.moradorId = moradorId;
         this.casaId = casaId;
         this.tipoVinculo = tipoVinculo;
+    }
+
+    public MoradorCasaDTO(int id,int moradorId, int casaId, TipoVinculo tipoVinculo){
+        this(moradorId,casaId,tipoVinculo);
+        this.id = id;
     }
 
     public MoradorCasaDTO(){
@@ -43,7 +49,8 @@ public class MoradorCasaDTO {
     @Override
     public String toString() {
         return "MoradorCasaDTO{" +
-                "moradorId=" + moradorId +
+                "id=" + id +
+                ", moradorId=" + moradorId +
                 ", casaId=" + casaId +
                 ", tipoVinculo=" + tipoVinculo +
                 '}';

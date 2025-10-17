@@ -4,6 +4,10 @@ import java.util.Date;
 
 public class MoradorDTO extends PessoaDTO {
 
+    public MoradorDTO(String nome, String cpf, Date dataNasc, String telefone, String email){
+        super(nome, cpf, dataNasc, telefone, email);
+    }
+
     public MoradorDTO(int id, String nome, String cpf, Date dataNasc, String telefone, String email) {
         super(id, nome, cpf, dataNasc, telefone, email);
     }
