@@ -6,12 +6,18 @@ public class Visitante extends Pessoa {
     private int morCadastraId;
     private Date dataAutorizacao;
 
+    public Visitante(String nome, String cpf, Date dataNasc, String telefone, String email, int morCadastraId, Date dataAutorizacao){
+        super(nome, cpf, dataNasc, telefone, email);
+        this.morCadastraId = morCadastraId;
+        this.dataAutorizacao = dataAutorizacao;
+    }
+
     public Visitante(int id, String nome, String cpf, Date dataNasc, String telefone, String email, int morCadastraId, Date dataAutorizacao) {
         super(id, nome, cpf, dataNasc, telefone, email);
         this.morCadastraId = morCadastraId;
         this.dataAutorizacao = dataAutorizacao;
     }
-    public Visitante(){};
+    public Visitante(){}
 
     public int getMorCadastraId() {
         return morCadastraId;

@@ -6,6 +6,12 @@ public class Prestador extends Pessoa {
     private String cnpj;
     private String empresa;
 
+    public Prestador(String nome, String cpf, Date dataNasc, String telefone, String email, String cnpj, String empresa) {
+        super(nome, cpf, dataNasc, telefone, email);
+        this.cnpj = cnpj;
+        this.empresa = empresa;
+    }
+
     public Prestador(int id, String nome, String cpf, Date dataNasc, String telefone, String email, String cnpj, String empresa) {
         super(id, nome, cpf, dataNasc, telefone, email);
         this.cnpj = cnpj;

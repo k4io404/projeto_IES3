@@ -12,13 +12,17 @@ public class Acesso {
     private TipoAcesso tipoAcesso;
     private StatusAcesso statusAcesso;
 
-    public Acesso(int id, int pesId, int locId, Timestamp data, TipoAcesso tipoAcesso, StatusAcesso statusAcesso) {
-        this.id = id;
+    public Acesso(int pesId, int locId, Timestamp data, TipoAcesso tipoAcesso, StatusAcesso statusAcesso){
         this.pesId = pesId;
         this.locId = locId;
         this.data = data;
         this.tipoAcesso = tipoAcesso;
         this.statusAcesso = statusAcesso;
+    }
+
+    public Acesso(int id, int pesId, int locId, Timestamp data, TipoAcesso tipoAcesso, StatusAcesso statusAcesso) {
+        this(pesId, locId, data, tipoAcesso, statusAcesso);
+        this.id = id;
     }
 
     public Acesso() {

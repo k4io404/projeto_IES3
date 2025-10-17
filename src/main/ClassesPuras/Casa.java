@@ -4,13 +4,16 @@ public class Casa {
     private int id;
     private String endereco;
 
-    public Casa(int id, String endereco) {
-        this.id = id;
+    public Casa(String endereco){
         this.endereco = endereco;
     }
 
-    public Casa() {
+    public Casa(int id, String endereco) {
+        this(endereco);
+        this.id = id;
     }
+
+    public Casa() {}
 
     public int getId() {
         return id;

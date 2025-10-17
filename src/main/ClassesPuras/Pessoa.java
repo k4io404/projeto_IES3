@@ -11,7 +11,11 @@ public class Pessoa {
     private String email;
 
     public Pessoa(int id, String nome, String cpf, Date dataNasc, String telefone, String email) {
+        this(nome,cpf,dataNasc,telefone,email);
         this.id = id;
+    }
+
+    public Pessoa(String nome, String cpf, Date dataNasc, String telefone, String email){
         this.nome = nome;
         this.cpf = cpf;
         this.dataNasc = dataNasc;
@@ -19,7 +23,7 @@ public class Pessoa {
         this.email = email;
     }
 
-    public Pessoa(){};
+    public Pessoa(){}
 
     public int getId() {
         return id;
