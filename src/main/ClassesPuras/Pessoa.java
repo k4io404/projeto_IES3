@@ -9,10 +9,12 @@ public class Pessoa {
     private Date dataNasc;
     private String telefone;
     private String email;
+    private boolean ativa;
 
-    public Pessoa(int id, String nome, String cpf, Date dataNasc, String telefone, String email) {
+    public Pessoa(int id, String nome, String cpf, Date dataNasc, String telefone, String email, boolean ativa) {
         this(nome,cpf,dataNasc,telefone,email);
         this.id = id;
+        this.ativa = ativa;
     }
 
     public Pessoa(String nome, String cpf, Date dataNasc, String telefone, String email){
