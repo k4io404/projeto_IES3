@@ -96,7 +96,7 @@ public class CasaDAO {
 
     // Atualizar Casa
     // Atualizar - Retorna boolean
-    protected boolean atualizarCasa(Casa casa) throws SQLException {
+    public boolean atualizarCasa(Casa casa) throws SQLException {
 
         String sql = "UPDATE CASAS SET casa_ender=? WHERE casa_id=? ";
 
