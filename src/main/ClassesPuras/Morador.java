@@ -8,8 +8,8 @@ public class Morador extends Pessoa {
         super(nome, cpf, dataNasc, telefone, email);
     }
 
-    public Morador(int id, String nome, String cpf, Date dataNasc, String telefone, String email) {
-        super(id, nome, cpf, dataNasc, telefone, email);
+    public Morador(int id, String nome, String cpf, Date dataNasc, String telefone, String email, boolean ativa) {
+        super(id, nome, cpf, dataNasc, telefone, email, ativa);
     }
 
     public Morador(){}

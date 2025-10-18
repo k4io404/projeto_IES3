@@ -84,6 +84,7 @@ public class Pessoa {
                 ", dataNasc=" + dataNasc +
                 ", telefone='" + telefone + '\'' +
                 ", email='" + email + '\'' +
+                ", ativa=" + ativa +
                 '}';
     }
 }
