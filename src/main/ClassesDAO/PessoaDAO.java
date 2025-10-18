@@ -10,7 +10,7 @@ public class PessoaDAO {
     // Gravar
     protected int incluirPessoa(Pessoa pessoa) throws SQLException {
 
-        String sql = "INSERT INTO PESSOAS (pessoa_nome, pessoa_cpf, pessoa_email, pessoa_telefone, pessoa_data_nasc) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO PESSOAS (pessoa_nome, pessoa_cpf, pessoa_email, pessoa_telef, pessoa_data_nasc) VALUES (?,?,?,?,?)";
 
         // Abre e fecha o conector
         try (Connection conn = ConnectionFactory.getConnection();
@@ -55,7 +55,7 @@ public class PessoaDAO {
                     p.setNome(rs.getString("pessoa_nome"));
                     p.setCpf(rs.getString("pessoa_cpf"));
                     p.setEmail(rs.getString("pessoa_email"));
-                    p.setTelefone(rs.getString("pessoa_telefone"));
+                    p.setTelefone(rs.getString("pessoa_telef"));
                     Date d = rs.getDate("pessoa_data_nasc");
                     p.setDataNasc(d);
                     listaPessoas.add(p);
@@ -84,7 +84,7 @@ public class PessoaDAO {
                     p.setNome(rs.getString("pessoa_nome"));
                     p.setCpf(rs.getString("pessoa_cpf"));
                     p.setEmail(rs.getString("pessoa_email"));
-                    p.setTelefone(rs.getString("pessoa_telefone"));
+                    p.setTelefone(rs.getString("pessoa_telef"));
                     Date d = rs.getDate("pessoa_data_nasc");
                     p.setDataNasc(d);
                     return p;
@@ -113,7 +113,7 @@ public class PessoaDAO {
                     p.setNome(rs.getString("pessoa_nome"));
                     p.setCpf(rs.getString("pessoa_cpf"));
                     p.setEmail(rs.getString("pessoa_email"));
-                    p.setTelefone(rs.getString("pessoa_telefone"));
+                    p.setTelefone(rs.getString("pessoa_telef"));
                     Date d = rs.getDate("pessoa_data_nasc");
                     p.setDataNasc(d);
                     return p;
@@ -151,7 +151,7 @@ public class PessoaDAO {
                     p.setNome(rs.getString("pessoa_nome"));
                     p.setCpf(rs.getString("pessoa_cpf"));
                     p.setEmail(rs.getString("pessoa_email"));
-                    p.setTelefone(rs.getString("pessoa_telefone"));
+                    p.setTelefone(rs.getString("pessoa_telef"));
                     Date d = rs.getDate("pessoa_data_nasc");
                     p.setDataNasc(d);
                     listaPessoas.add(p);
@@ -166,7 +166,7 @@ public class PessoaDAO {
     // Atualizar - Retorna boolean
     protected boolean atualizarPessoa(Pessoa pessoa) throws SQLException {
 
-        String sql = "UPDATE PESSOAS SET pessoa_nome=?, pessoa_cpf=?, pessoa_email=?, pessoa_telefone=?, pessoa_data_nasc=? WHERE pessoa_id=?";
+        String sql = "UPDATE PESSOAS SET pessoa_nome=?, pessoa_cpf=?, pessoa_email=?, pessoa_telef=?, pessoa_data_nasc=? WHERE pessoa_id=?";
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {

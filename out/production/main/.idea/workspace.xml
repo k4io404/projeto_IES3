@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="937ff1eb-7715-4f20-b2a1-990ff5202f49" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../out/production/main/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/main/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/main/ClassesDAO/AcessoDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/ClassesDAO/AcessoDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/main/ClassesDAO/AutorizacaoDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/ClassesDAO/AutorizacaoDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/main/ClassesDAO/CasaDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/ClassesDAO/CasaDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/main/ClassesDAO/ConnectionFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/ClassesDAO/ConnectionFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/main/ClassesDAO/LocalControladoDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/ClassesDAO/LocalControladoDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/main/ClassesDAO/MoradorCasaDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/ClassesDAO/MoradorCasaDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/main/ClassesDAO/MoradorDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/ClassesDAO/MoradorDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/main/ClassesDAO/PessoaDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/ClassesDAO/PessoaDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/main/ClassesDAO/PrestadorDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/ClassesDAO/PrestadorDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/main/ClassesDAO/ServicoDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/ClassesDAO/ServicoDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/main/ClassesDAO/TesteDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/ClassesDAO/TesteDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/main/ClassesDAO/VeiculoDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/ClassesDAO/VeiculoDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/main/ClassesDAO/VisitanteDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/ClassesDAO/VisitanteDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/main/ClassesDTO/AcessoDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/ClassesDTO/AcessoDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/main/ClassesDTO/AutorizacaoDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/ClassesDTO/AutorizacaoDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/main/ClassesDTO/CasaDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/ClassesDTO/CasaDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/main/ClassesDTO/LocalControladoDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/ClassesDTO/LocalControladoDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/main/ClassesDTO/MoradorCasaDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/ClassesDTO/MoradorCasaDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/main/ClassesDTO/MoradorDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/ClassesDTO/MoradorDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/main/ClassesDTO/PessoaDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/ClassesDTO/PessoaDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/main/ClassesDTO/PrestadorDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/ClassesDTO/PrestadorDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/main/ClassesDTO/ServicoDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/ClassesDTO/ServicoDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/main/ClassesDTO/VeiculoDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/ClassesDTO/VeiculoDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/main/ClassesDTO/VisitanteDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/ClassesDTO/VisitanteDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/main/ClassesPuras/Acesso.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/ClassesPuras/Acesso.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/main/ClassesPuras/Autorizacao.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/ClassesPuras/Autorizacao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/main/ClassesPuras/Casa.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/ClassesPuras/Casa.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/main/ClassesPuras/LocalControlado.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/ClassesPuras/LocalControlado.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/main/ClassesPuras/Morador.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/ClassesPuras/Morador.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/main/ClassesPuras/MoradorCasa.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/ClassesPuras/MoradorCasa.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/main/ClassesPuras/Pessoa.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/ClassesPuras/Pessoa.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/main/ClassesPuras/Prestador.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/ClassesPuras/Prestador.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/main/ClassesPuras/Servico.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/ClassesPuras/Servico.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/main/ClassesPuras/Veiculo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/ClassesPuras/Veiculo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/main/ClassesPuras/Visitante.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/ClassesPuras/Visitante.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/main/ClassesUtil/TipoPessoa.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/ClassesUtil/TipoPessoa.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/main/Util/StatusAcesso.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/Util/StatusAcesso.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/main/Util/TipoAcesso.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/Util/TipoAcesso.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/main/Util/TipoVinculo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/Util/TipoVinculo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClassesDAO/PessoaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/ClassesDAO/PessoaDAO.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 5
+}]]></component>
+  <component name="ProjectId" id="34FnS4XAwkc3yfR29XUMwm8MMr5" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Application.Teste.executor": "Run",
+    "Application.TesteDAO.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/mateu/Documents/GitHub/projeto_IES3_Mudanca/src/main",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.21149425",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle"
+  }
+}]]></component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="937ff1eb-7715-4f20-b2a1-990ff5202f49" name="Changes" comment="" />
+      <created>1760818184525</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1760818184525</updated>
+    </task>
+    <servers />
+  </component>
+</project>

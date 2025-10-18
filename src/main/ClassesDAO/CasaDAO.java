@@ -1,6 +1,8 @@
 package ClassesDAO;
 
 import ClassesPuras.Casa;
+import ClassesPuras.Pessoa;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -89,6 +91,22 @@ public class CasaDAO {
                 }
                 return listaCasa.toArray(new Casa[0]);
             }
+        }
+    }
+
+    // Atualizar Casa
+    // Atualizar - Retorna boolean
+    protected boolean atualizarCasa(Casa casa) throws SQLException {
+
+        String sql = "UPDATE CASAS SET casa_ender=? WHERE casa_id=? ";
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, casa.getEndereco());
+            stmt.setInt(2, casa.getId());
+
+            return stmt.executeUpdate() > 0;
         }
     }
 }
