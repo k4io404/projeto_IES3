@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="937ff1eb-7715-4f20-b2a1-990ff5202f49" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../out/production/main/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/main/ClassesDAO/CasaDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/ClassesDAO/CasaDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/main/ClassesDAO/PessoaDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/ClassesDAO/PessoaDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/main/ClassesDAO/TesteDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/main/ClassesDAO/TesteDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClassesDAO/CasaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/ClassesDAO/CasaDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClassesDAO/PessoaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/ClassesDAO/PessoaDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClassesDAO/TesteDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/ClassesDAO/TesteDAO.java" afterDir="false" />
-    </list>
+    <list default="true" id="937ff1eb-7715-4f20-b2a1-990ff5202f49" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
