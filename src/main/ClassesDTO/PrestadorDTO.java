@@ -12,8 +12,8 @@ public class PrestadorDTO extends PessoaDTO {
         this.empresa = empresa;
     }
 
-    public PrestadorDTO(int id, String nome, String cpf, Date dataNasc, String telefone, String email, String cnpj, String empresa) {
-        super(id, nome, cpf, dataNasc, telefone, email);
+    public PrestadorDTO(int id, String nome, String cpf, Date dataNasc, String telefone, String email, boolean ativa, String cnpj, String empresa) {
+        super(id, nome, cpf, dataNasc, telefone, email, ativa);
         this.cnpj = cnpj;
         this.empresa = empresa;
     }
@@ -39,8 +39,7 @@ public class PrestadorDTO extends PessoaDTO {
 
     @Override
     public String toString() {
-        return  super.toString() +
-                "PrestadorDTO{" +
+        return "PrestadorDTO{" +
                 "cnpj='" + cnpj + '\'' +
                 ", empresa='" + empresa + '\'' +
                 '}';

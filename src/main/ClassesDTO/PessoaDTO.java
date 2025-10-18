@@ -9,10 +9,12 @@ public class PessoaDTO {
     private Date dataNasc;
     private String telefone;
     private String email;
+    private boolean ativa;
 
-    public PessoaDTO(int id, String nome, String cpf, Date dataNasc, String telefone, String email) {
+    public PessoaDTO(int id, String nome, String cpf, Date dataNasc, String telefone, String email, boolean ativa) {
         this(nome,cpf,dataNasc,telefone,email);
         this.id = id;
+        this.ativa = ativa;
     }
 
     public PessoaDTO(String nome, String cpf, Date dataNasc, String telefone, String email){
@@ -82,6 +84,7 @@ public class PessoaDTO {
                 ", dataNasc=" + dataNasc +
                 ", telefone='" + telefone + '\'' +
                 ", email='" + email + '\'' +
+                ", ativa=" + ativa +
                 '}';
     }
 }
