@@ -130,9 +130,9 @@ public class PessoaDAO {
         String sql;
 
         if(tipo.equalsIgnoreCase("MORADOR")){
-            sql = "SELECT A.* FROM PESSOAS A INNER JOIN MORADOR B ON A.pessoa_id = B.pessoa_id";
-        } else if (tipo.equalsIgnoreCase("PRESTADOR")){
-            sql = "SELECT A.* FROM PESSOAS A INNER JOIN PRESTADOR B ON A.pessoa_id = B.pessoa_id";
+            sql = "SELECT A.* FROM PESSOAS A INNER JOIN MORADORES B ON A.pessoa_id = B.morador_id";
+        } else if (tipo.equalsIgnoreCase("PRESTADORES")){
+            sql = "SELECT A.* FROM PESSOAS A INNER JOIN PRESTADORES B ON A.pessoa_id = B.pessoa_id";
         } else if(tipo.equalsIgnoreCase("VISITANTE")){
             sql = "SELECT A.* FROM PESSOAS A INNER JOIN VISITANTE B ON A.pessoa_id = B.pessoa_id";
         } else {
@@ -187,12 +187,13 @@ public class PessoaDAO {
     // Deletar - Retorna boolean
     public boolean deletarPessoa(Pessoa pessoa) throws SQLException {
 
-        String sql = "UPDATE PESSOAS SET pessoa_ativa = false WHERE pessoa_id = ?";
+        String sql = "UPDATE PESSOAS SET pessoa_ativa = ? WHERE pessoa_id = ?";
 
         try (Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setInt(1, pessoa.getId());
+            stmt.setBoolean(1, false);
+            stmt.setInt(2, pessoa.getId());
             return stmt.executeUpdate() > 0;
         }
 
@@ -206,12 +207,13 @@ public class PessoaDAO {
     }
 
     public boolean reincluirPessoa(Pessoa pessoa) throws SQLException{
-        String sql = "UPDATE PESSOAS SET pessoa_ativa = true WHERE pessoa_id = ?";
+        String sql = "UPDATE PESSOAS SET pessoa_ativa = ? WHERE pessoa_id = ?";
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setInt(1, pessoa.getId());
+            stmt.setBoolean(1, true);
+            stmt.setInt(2, pessoa.getId());
             return stmt.executeUpdate() > 0;
         }
     }
