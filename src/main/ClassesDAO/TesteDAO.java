@@ -9,34 +9,6 @@ public class TesteDAO {
 
     public static void main(String[] args) {
 
-        // --- Variáveis de Teste (Mocks) ---
-        // A data de nascimento deve ser inicializada para evitar NullPointerException durante a conversão SQL
-        Date dataNasc = new Date();
-
-        // Pessoa / Morador / Prestador / Visitante
-        Pessoa p1 = new Pessoa();
-        p1.setId(101); // ID para operações de atualização/deleção
-        p1.setNome("Fulano de Teste");
-        p1.setCpf("00000000001");
-        p1.setEmail("teste@email.com");
-        p1.setTelefone("999999999");
-        p1.setDataNasc(dataNasc);
-
-        Morador m1 = new Morador();
-        m1.setId(201);
-        m1.setNome("Morador Teste");
-        // Assume que Morador herda todos os atributos de Pessoa
-
-        Prestador pr1 = new Prestador();
-        pr1.setId(301);
-        pr1.setNome("Prestador Servico Teste");
-        pr1.setCnpj("11223344556677");
-        pr1.setEmpresa("Empresa Teste SA");
-
-        Visitante v1 = new Visitante();
-        v1.setId(401);
-        v1.setNome("Visitante Teste");
-
         // Outras Entidades
         Casa c1 = new Casa();
         c1.setId(501);

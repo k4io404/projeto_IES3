@@ -8,7 +8,7 @@ import java.util.List;
 public class PessoaDAO {
 
     // Gravar
-    protected int incluirPessoa(Pessoa pessoa) throws SQLException {
+    public int incluirPessoa(Pessoa pessoa) throws SQLException {
 
         String sql = "INSERT INTO PESSOAS (pessoa_nome, pessoa_cpf, pessoa_email, pessoa_telef, pessoa_data_nasc) VALUES (?,?,?,?,?)";
 
@@ -164,7 +164,7 @@ public class PessoaDAO {
     }
 
     // Atualizar - Retorna boolean
-    protected boolean atualizarPessoa(Pessoa pessoa) throws SQLException {
+    public boolean atualizarPessoa(Pessoa pessoa) throws SQLException {
 
         String sql = "UPDATE PESSOAS SET pessoa_nome=?, pessoa_cpf=?, pessoa_email=?, pessoa_telef=?, pessoa_data_nasc=? WHERE pessoa_id=?";
 
