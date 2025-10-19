@@ -7,8 +7,6 @@ import java.util.List;
 
 public class PessoaDAO {
 
-
-
     // Gravar
     //public int incluirPessoa(Pessoa pessoa) throws SQLException {
         //String sql = "INSERT INTO PESSOAS (pessoa_nome, pessoa_cpf, pessoa_email, pessoa_telef, pessoa_data_nasc) VALUES (?,?,?,?,?)";
