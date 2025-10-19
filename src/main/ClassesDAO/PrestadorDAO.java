@@ -10,7 +10,7 @@ public class PrestadorDAO extends PessoaDAO {
 
         int prestador_id = super.incluirPessoa(prestador);
 
-        String sql = "INSERT INTO PRESTADORES (prestador_id, prestador_cnpj, prestador_empresa, prestador_id) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO PRESTADORES (prestador_id, prestador_cnpj, prestador_empresa) VALUES (?,?,?)";
 
         // Abre e fecha o conector
         try (Connection conn = ConnectionFactory.getConnection();
@@ -19,7 +19,6 @@ public class PrestadorDAO extends PessoaDAO {
             stmt.setInt(1,prestador_id);
             stmt.setString(2, prestador.getCnpj());
             stmt.setString(3, prestador.getEmpresa());
-            stmt.setInt(4, prestador.getId());
 
             // Linha afetada pela ação
             int affectedRows = stmt.executeUpdate();

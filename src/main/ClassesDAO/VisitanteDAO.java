@@ -12,7 +12,7 @@ public class VisitanteDAO extends PessoaDAO  {
 
         int visitante_id = super.incluirPessoa(visitante);
 
-        String sql = "INSERT INTO + VISITANTES (visitante_id, morador_id, visit_data_autorizacao) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO VISITANTES (visitante_id, morador_id, visit_data_autorizacao) VALUES (?, ?, ?)";
 
         // Abre e fecha o conector
         try (Connection conn = ConnectionFactory.getConnection();
