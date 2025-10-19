@@ -8,7 +8,7 @@ public class ConnectionFactory {
 
     //private static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=BD_ES3";
     private static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=BD_ES3;encrypt=true;trustServerCertificate=true";
-    private static final String USER = "sa";
+    private static final String USER = "conexao_java";
     private static final String PASSWORD = "MinhaSenha123";
 
     public static Connection getConnection() {
