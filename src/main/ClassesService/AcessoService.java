@@ -1,9 +1,10 @@
 package ClassesService;
 
 import ClassesDAO.AcessoDAO;
+import ClassesDTO.AcessoDTO;
+import ClassesDTO.LocalControladoDTO;
 import ClassesPuras.Acesso;
 import ClassesPuras.LocalControlado;
-import ClassesPuras.Pessoa;
 
 import java.sql.SQLException;
 
@@ -15,28 +16,25 @@ public class AcessoService {
         this.acessoDAO = acessoDAO;
     }
 
-    public int incluirAcesso(Acesso acesso) throws SQLException, IllegalArgumentException {
+    public int incluirAcesso(AcessoDTO acessoDTO) throws SQLException, IllegalArgumentException {
 
-        if (acesso == null){
-            throw new IllegalArgumentException("O objeto acesso não pode ser nulo.");
+        if (acessoDTO == null){
+            throw new IllegalArgumentException("O objeto acesso n達o pode ser nulo.");
         }
 
-        if (acesso.getId() <= 0){
-            throw new IllegalArgumentException("O ID da pessoa associada ao acesso deve ser um número positivo.");
-        }
+//        if (acesso.getData() == null){
+//            throw new IllegalArgumentException("A data do acesso n達o pode ser nulo.");
+//        }
 
-        if (acesso.getData() == null){
-            throw new IllegalArgumentException("A data do acesso não pode ser nulo.");
-        }
-
-        if (!acesso.getTipoAcesso().equals("SAIDA") && !acesso.getTipoAcesso().equals("ENTRADA")) {
-            throw new IllegalArgumentException("O tipo de acesso deve ser 'SAIDA' ou 'ENTRADA'.");
-        }
+        Acesso acesso = new Acesso(
+                acessoDTO.getPesId(),
+                acessoDTO.getLocId(),
+                acessoDTO.getData(),
+                acessoDTO.getTipoAcesso(),
+                acessoDTO.getStatusAcesso()
+        );
 
         try {
-            if (acessoDAO.consultarAcesso(acesso) != null){
-                throw new IllegalArgumentException("Já existe um acesso cadastrado com esse id.");
-            }
             return acessoDAO.incluirAcesso(acesso);
 
         } catch (SQLException e){
@@ -46,7 +44,21 @@ public class AcessoService {
 
     }
 
-    public Acesso consultarAcesso(Acesso acesso) throws SQLException {
+    public Acesso consultarAcesso(AcessoDTO acessoDTO) throws SQLException {
+
+        if (acessoDTO == null){
+            throw new IllegalArgumentException("O objeto acesso n達o pode ser nulo.");
+        }
+
+
+        Acesso acesso = new Acesso(
+                acessoDTO.getId(),
+                acessoDTO.getPesId(),
+                acessoDTO.getLocId(),
+                acessoDTO.getData(),
+                acessoDTO.getTipoAcesso(),
+                acessoDTO.getStatusAcesso()
+        );
 
         try {
             return acessoDAO.consultarAcesso(acesso);
@@ -57,9 +69,19 @@ public class AcessoService {
 
     }
 
-    public Acesso[] consultarAcessosPorLocal(LocalControlado local) throws SQLException {
+    public Acesso[] consultarAcessosPorLocal(LocalControladoDTO localControladoDTO) throws SQLException {
+
+        if (localControladoDTO == null){
+            throw new IllegalArgumentException("O objeto local n達o pode ser nulo.");
+        }
+
+        LocalControlado  localControlado = new LocalControlado(
+                localControladoDTO.getId(),
+                localControladoDTO.getNome()
+        );
+
         try {
-            return acessoDAO.consultarAcessosPorLocal(local);
+            return acessoDAO.consultarAcessosPorLocal(localControlado);
         } catch (SQLException e){
             System.err.println("Erro ao consultar o acessos por local: " + e.getMessage());
             throw new SQLException("Erro ao consultar o acesso por local no banco de dados.", e);
@@ -67,16 +89,19 @@ public class AcessoService {
 
     }
 
-    public Acesso[] consultarAcessosPorPessoa(Pessoa pessoa) throws SQLException {
+    public Acesso[] consultarAcessosPorPessoa(int id) throws SQLException {
+
         try {
-            return acessoDAO.consultarAcessosPorPessoa(pessoa);
+            return acessoDAO.consultarAcessosPorPessoa(id);
         } catch (SQLException e){
             System.err.println("Erro ao consultar o acessos por pessoa: " + e.getMessage());
             throw new SQLException("Erro ao consultar o acesso por pessoa no banco de dados.", e);
         }
+
     }
 
     public Acesso[] consultarAcessosOrderData( ) throws SQLException {
+
         try {
             return acessoDAO.consultarAcessosOrderData();
         } catch (SQLException e){
@@ -84,5 +109,4 @@ public class AcessoService {
             throw new SQLException("Erro ao consultar o acesso por data no banco de dados.", e);
         }
     }
-
 }
