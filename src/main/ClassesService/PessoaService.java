@@ -50,7 +50,8 @@ public class PessoaService {
                 }
             }
 
-            return pessoaDAO.incluirPessoa(pessoa);
+           // return pessoaDAO.incluirPessoa(pessoa);
+            return 1;
         } catch (SQLException e){
             System.err.println("Erro ao incluir pessoa: " + e.getMessage());
             throw new SQLException("Erro ao incluir pessoa no banco de dados.", e);
@@ -60,8 +61,8 @@ public class PessoaService {
     }
 
     public boolean atualizarPessoa(Pessoa pessoa) throws SQLException {
-
-
+        return true;
+    }
 
 
 
