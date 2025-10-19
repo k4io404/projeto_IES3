@@ -24,7 +24,7 @@ public class MoradorDAO extends PessoaDAO  {
             // Cursos sempre fica um antes
             try (ResultSet rs = stmt.getGeneratedKeys()) {
                 if (rs.next()) {
-                    return rs.getInt(1); // id gerado
+                    return morador_id; // id gerado anteriormente
                 }
             }
 
