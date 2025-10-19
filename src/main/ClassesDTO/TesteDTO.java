@@ -7,7 +7,7 @@ public class TesteDTO {
     public static void main(String[] args) {
 
         //Teste Classes DTO
-
+/*
         PessoaDTO p = new PessoaDTO();
         PessoaDTO m = new MoradorDTO();
         System.out.println(p.getClass());
@@ -46,6 +46,6 @@ public class TesteDTO {
 
         VisitanteDTO visitante = new VisitanteDTO(13,"Carlos","789",null,"456","@",11,null);
         System.out.println(visitante);
-
+*/
     }
 }
