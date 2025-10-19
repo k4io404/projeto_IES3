@@ -72,8 +72,8 @@ public class ServicoDAO {
 
         String sql = "SELECT A.* " +
                 "FROM SERVICOS A " +
-                "INNER JOIN MORADOR B " +
-                "ON A.morador_id = B.morador_id" +
+                "INNER JOIN MORADORES B " +
+                "ON A.morador_id = B.morador_id " +
                 "WHERE A.morador_id = ?";
 
         try (Connection conn = ConnectionFactory.getConnection();
@@ -107,7 +107,7 @@ public class ServicoDAO {
         String sql = "SELECT A.* " +
                 "FROM SERVICOS A " +
                 "INNER JOIN PRESTADORES B " +
-                "ON A.prestador_id = B.prestador_id" +
+                "ON A.prestador_id = B.prestador_id " +
                 "WHERE A.prestador_id = ?";
 
         try (Connection conn = ConnectionFactory.getConnection();
@@ -147,8 +147,8 @@ public class ServicoDAO {
             stmt.setInt(2, servico.getPrestId());
             stmt.setString(3, servico.getServTipo());
             stmt.setDate(4, (Date) servico.getDataInicio());
-            stmt.setDate(4, (Date) servico.getDataFim());
-            stmt.setInt(5, servico.getId());
+            stmt.setDate(5, (Date) servico.getDataFim());
+            stmt.setInt(6, servico.getId());
 
             return stmt.executeUpdate() > 0;
         }

@@ -71,10 +71,10 @@ public class MoradorCasaDAO {
     // Consultar Casas relacionada a um Morador
     public Casa[] consultarCasasMorador(Morador morador) throws SQLException {
 
-        String sql =  "SELECT A.* " +
-                "FROM PESSOAS A " +
-                "INNER JOIN MORADORCASA B ON A.pessoa_id = B.pessoa_id " +
-                "WHERE B.pessoa_id = ?";
+        String sql =  "SELECT C.* " +
+                "FROM MORADOR_CASA B " +
+                "INNER JOIN CASAS C ON C.casa_id = B.casa_id " +
+                "WHERE B.morador_id = ?";
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -88,8 +88,8 @@ public class MoradorCasaDAO {
                 // cursor mostra a linha n-1
                 while (rs.next()) {
                     Casa c = new Casa();
-                    c.setEndereco(rs.getString("casa_ender"));
                     c.setId(rs.getInt("casa_id"));
+                    c.setEndereco(rs.getString("casa_ender"));
                     listaCasa.add(c);
                 }
                 return listaCasa.toArray(new Casa[0]);
@@ -100,10 +100,16 @@ public class MoradorCasaDAO {
     // Consultar Pessoas relacionada a uma Casa
     public Pessoa[] consultarMoradoresCasa(Casa casa) throws SQLException {
 
-        String sql =  "SELECT A.* " +
-                "FROM PESSOAS A " +
-                "INNER JOIN MORADORCASA B ON A.pessoa_id = B.pessoa_id " +
-                "WHERE A.casa_id = ?";
+        //String sql =  "SELECT A.* " +
+        //        "FROM PESSOAS A " +
+        //        "INNER JOIN MORADOR_CASA B ON A.pessoa_id = B.morador_id " +
+        //        "WHERE A.casa_id = ?";
+
+        String sql = "SELECT P.* " +
+                "FROM MORADOR_CASA B " +
+                "INNER JOIN MORADORES M ON M.morador_id = B.morador_id " +
+                "INNER JOIN PESSOAS P ON P.pessoa_id = M.morador_id " +
+                "WHERE B.casa_id = ?";
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -121,7 +127,7 @@ public class MoradorCasaDAO {
                     p.setNome(rs.getString("pessoa_nome"));
                     p.setCpf(rs.getString("pessoa_cpf"));
                     p.setEmail(rs.getString("pessoa_email"));
-                    p.setTelefone(rs.getString("pessoa_telefone"));
+                    p.setTelefone(rs.getString("pessoa_telef"));
                     Date d = rs.getDate("pessoa_data_nasc");
                     p.setDataNasc(d);
                     listaPessoas.add(p);
