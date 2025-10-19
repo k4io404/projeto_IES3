@@ -10,11 +10,37 @@ public class PessoaDAO {
 
 
     // Gravar
-    public int incluirPessoa(Pessoa pessoa) throws SQLException {
-
-        String sql = "INSERT INTO PESSOAS (pessoa_nome, pessoa_cpf, pessoa_email, pessoa_telef, pessoa_data_nasc) VALUES (?,?,?,?,?)";
+    //public int incluirPessoa(Pessoa pessoa) throws SQLException {
+        //String sql = "INSERT INTO PESSOAS (pessoa_nome, pessoa_cpf, pessoa_email, pessoa_telef, pessoa_data_nasc) VALUES (?,?,?,?,?)";
 
         // Abre e fecha o conector
+        //try (Connection conn = ConnectionFactory.getConnection();
+             //PreparedStatement stmt = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
+
+            //stmt.setString(1, pessoa.getNome());
+            //stmt.setString(2, pessoa.getCpf());
+            //stmt.setString(3, pessoa.getEmail());
+            //stmt.setString(4, pessoa.getTelefone());
+            //stmt.setDate(5, new java.sql.Date(pessoa.getDataNasc().getTime()));
+
+            // Linha afetada pela ação
+            //int affectedRows = stmt.executeUpdate();
+
+            // Cursos sempre fica um antes
+            //try (ResultSet rs = stmt.getGeneratedKeys()) {
+                //if (rs.next()) {
+                    //return rs.getInt(1); // id gerado
+                    // }
+                //}
+
+            // Retornar a linha afetada pela ação
+            //return affectedRows;
+            //    }
+    //}
+
+    public int incluirPessoa(Pessoa pessoa) throws SQLException {
+        String sql = "INSERT INTO PESSOAS (pessoa_nome, pessoa_cpf, pessoa_email, pessoa_telef, pessoa_data_nasc, pessoa_ativa) VALUES (?,?,?,?,?,?)";
+
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
 
@@ -23,9 +49,16 @@ public class PessoaDAO {
             stmt.setString(3, pessoa.getEmail());
             stmt.setString(4, pessoa.getTelefone());
             stmt.setDate(5, new java.sql.Date(pessoa.getDataNasc().getTime()));
+            // garante que não será inserido NULL (evita erro quando coluna não tem DEFAULT)
+            stmt.setBoolean(6, pessoa.isAtiva());
 
-            // Linha afetada pela ação
             int affectedRows = stmt.executeUpdate();
+
+            try (ResultSet rs = stmt.getGeneratedKeys()) {
+                if (rs.next()) {
+                    return rs.getInt(1);
+                }
+            }
 
             // Cursos sempre fica um antes
             try (ResultSet rs = stmt.getGeneratedKeys()) {
@@ -34,7 +67,6 @@ public class PessoaDAO {
                 }
             }
 
-            // Retornar a linha afetada pela ação
             return affectedRows;
         }
     }
@@ -131,10 +163,10 @@ public class PessoaDAO {
 
         if(tipo.equalsIgnoreCase("MORADOR")){
             sql = "SELECT A.* FROM PESSOAS A INNER JOIN MORADORES B ON A.pessoa_id = B.morador_id";
-        } else if (tipo.equalsIgnoreCase("PRESTADORES")){
-            sql = "SELECT A.* FROM PESSOAS A INNER JOIN PRESTADORES B ON A.pessoa_id = B.pessoa_id";
+        } else if (tipo.equalsIgnoreCase("PRESTADOR")){
+            sql = "SELECT A.* FROM PESSOAS A INNER JOIN PRESTADORES B ON A.pessoa_id = B.prestador_id";
         } else if(tipo.equalsIgnoreCase("VISITANTE")){
-            sql = "SELECT A.* FROM PESSOAS A INNER JOIN VISITANTE B ON A.pessoa_id = B.pessoa_id";
+            sql = "SELECT A.* FROM PESSOAS A INNER JOIN VISITANTES B ON A.pessoa_id = B.visitante_id";
         } else {
             throw new IllegalArgumentException("Tipo de pessoa inválido: " + tipo);
         }

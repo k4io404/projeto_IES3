@@ -51,6 +51,14 @@ public class Pessoa {
         this.cpf = cpf;
     }
 
+    public boolean isAtiva() {
+        return ativa;
+    }
+
+    public void setAtiva(boolean ativa) {
+        this.ativa = ativa;
+    }
+
     public Date getDataNasc() {
         return dataNasc;
     }

@@ -10,13 +10,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * Teste manual único (sem JUnit) que roda todos os métodos públicos de PessoaDAO
- * sem exigir alterações em outras classes. Use este arquivo para executar
- * um teste completo contra seu banco (já com DEFAULT para pessoa_ativa aplicado).
- *
- * Execute: Run -> ClassesDAO.TestePessoaDAOManual
- */
 public class TestePessoaDAO {
 
     public static void main(String[] args) {

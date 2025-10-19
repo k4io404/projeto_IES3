@@ -1,9 +1,12 @@
 package ClassesDAO;
 
 import ClassesPuras.Morador;
+import ClassesPuras.Pessoa;
 import ClassesPuras.Visitante;
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class VisitanteDAO extends PessoaDAO  {
 
@@ -61,7 +64,7 @@ public class VisitanteDAO extends PessoaDAO  {
     }
 
     // Consultar com base no morador vinculado
-    public Morador consultarVisitantesPorMorador(Morador morador) throws SQLException {
+    public Visitante[] consultarVisitantesPorMorador(Morador morador) throws SQLException {
 
         String sql = "SELECT * FROM VISITANTES WHERE morador_id = ?";
 
@@ -72,13 +75,17 @@ public class VisitanteDAO extends PessoaDAO  {
 
             try (ResultSet rs = stmt.executeQuery()) {
 
-                // cursor mostra a linha n-1
-                if (rs.next()) {
-                    Morador m = new Morador();
-                    m.setId(rs.getInt("morador_id"));
-                    return m;
+                List<Visitante> listaVisitantesPMorador = new ArrayList<>();
+
+                while (rs.next()) {
+                    Visitante v = new Visitante();
+                    v.setId(rs.getInt("visitante_id"));
+                    v.setMorCadastraId(rs.getInt("morador_id"));
+                    Date d = rs.getDate("visit_data_autorizacao");
+                    v.setDataAutorizacao(d);
+                    listaVisitantesPMorador.add(v);
                 }
-                return null;
+                return listaVisitantesPMorador.toArray(new Visitante[0]);
             }
         }
     }
