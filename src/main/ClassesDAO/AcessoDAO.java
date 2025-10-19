@@ -101,14 +101,14 @@ public class AcessoDAO {
     }
 
     // Consultar relacionados a Pessoas
-    public Acesso[] consultarAcessosPorPessoa(Pessoa pessoa) throws SQLException {
+    public Acesso[] consultarAcessosPorPessoa(int pessoa_id) throws SQLException {
 
         String sql = "SELECT * FROM ACESSOS WHERE pessoa_id = ?";
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setInt(1, pessoa.getId());
+            stmt.setInt(1, pessoa_id);
 
             try (ResultSet rs = stmt.executeQuery()) {
 

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="686.0" prefWidth="874.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.DashboardController">
+
+    <!-- Menu Lateral -->
+    <left>
+        <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="199.0" spacing="10" style="-fx-background-color: #1D1D28; -fx-padding: 25;">
+            <Button fx:id="btnDashboard" prefWidth="149.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color: transparent; -fx-border-color: #b0b0b0; -fx-border-width: 1;" styleClass="button-style" text="Dashboard" textFill="WHITE">
+            
+			<font>
+               <Font size="14.0" />
+            </font>
+         </Button>
+            <Button fx:id="btnAcessos" prefWidth="150" style="-fx-background-color: transaperent; -fx-border-color: #b0b0b0; -fx-border-radius: 20;" text="Consultar Acessos" textFill="WHITE">
+            <font>
+               <Font size="14.0" />
+            </font></Button>
+            <Button fx:id="btnVeiculos" prefWidth="150" style="-fx-background-color: transaperent; -fx-border-color: #b0b0b0; -fx-border-radius: 20;" text="Pessoas" textFill="WHITE">
+            <font>
+               <Font size="14.0" />
+            </font></Button>
+            <Button fx:id="btnPessoas" prefWidth="150" style="-fx-background-color: white; -fx-border-color: transparent; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 1;" text="Veículos">
+            <font>
+               <Font name="System Bold" size="14.0" />
+            </font>
+         </Button>
+            <Button fx:id="btnApartamentos" prefWidth="150" style="-fx-background-color: transaperent; -fx-border-color: #b0b0b0; -fx-border-radius: 20;" text="Casas" textFill="WHITE">
+            <font>
+               <Font size="14.0" />
+            </font></Button>
+            <Button fx:id="btnLogout" prefWidth="150" style="-fx-background-color: transaperent; -fx-border-color: #b0b0b0; -fx-border-radius: 20;" text="Locais" textFill="WHITE">
+            <font>
+               <Font size="14.0" />
+            </font></Button>
+         <Button fx:id="btnLogout1" layoutX="35.0" layoutY="245.0" prefWidth="150" style="-fx-background-color: transaperent; -fx-border-color: #b0b0b0; -fx-border-radius: 20;" text="Sair" textFill="WHITE">
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Button>
+        </VBox>
+    </left>
+   <center>
+      <StackPane alignment="TOP_CENTER" minHeight="-Infinity" prefHeight="686.0" prefWidth="851.0" style="-fx-background-color: transaperent; -fx-border-color: white; -fx-border-radius: 20;" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="626.0" spacing="20.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" minWidth="-Infinity" prefHeight="0.0" prefWidth="78.0" text="Veículos">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER_LEFT" prefWidth="600.0" spacing="10">
+                            <children>
+                                <Button style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color: #1D1D28;" text="Cadastrar" textFill="WHITE">
+                                    <font>
+                              <Font size="14.0" />
+                           </font>
+                                </Button>
+                            </children>
+                        </HBox>
+                  <HBox alignment="CENTER_LEFT" spacing="15.0">
+                     <children>
+                                <TextField fx:id="txtPesquisa" prefHeight="25.0" prefWidth="240.0" promptText="Pesquisar por placa ou responsável" />
+                                <Button style="-fx-background-color: #1D1D28; -fx-border-radius: 20; -fx-background-radius: 20;" text="Pesquisar" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Button>
+                     </children>
+                  </HBox>
+                  <ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="456.0" prefWidth="645.0" vbarPolicy="ALWAYS">
+                     <content>
+      
+                                    <TableView prefHeight="454.0" prefWidth="626.0">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="Placa" />
+                              <TableColumn prefWidth="246.0" text="Responsável" />
+                              <TableColumn prefWidth="117.0" text="Tipo Responsável" />
+                              <TableColumn minWidth="0.0" prefWidth="98.0" text="Modelo" />
+                              <TableColumn prefWidth="89.0" text="Cor" />
+                          </columns>
+                        </TableView>
+                     </content>
+                  </ScrollPane>
+                  <Pagination fx:id="paginacao" maxHeight="-Infinity" maxPageIndicatorCount="5" maxWidth="-Infinity" prefHeight="25.0" prefWidth="195.0" style="-fx-page-information-visible: false; -FX-page-information-alignment: right; -fx-padding: 0;" />
+			
+
+               </children>
+            </VBox>
+         </children>
+      </StackPane>
+   </center>
+
+</BorderPane>

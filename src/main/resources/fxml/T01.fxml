@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane prefHeight="400" prefWidth="600" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ClassesController.T01Controller">
+
+    <VBox alignment="CENTER" spacing="15.0">
+        <Label alignment="CENTER" contentDisplay="CENTER" style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Controle de Acesso de Condomínio" />
+      <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="187.0">
+         <children>
+            <Label text="Usuário" />
+            <TextField fx:id="loginField" />
+         </children>
+      </VBox>
+      <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="187.0">
+         <children>
+            <Label text="Senha" />
+            <PasswordField fx:id="senhaField" />
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="43.0" prefWidth="187.0">
+         <children>
+            <Button fx:id="entrarButton" onAction="#handleEntrarButtonAction" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="187.0" style="-fx-background-color: #1D1D28; -fx-background-radius: 20; -fx-border-radius: 20;" text="Entrar" textFill="WHITE" />
+         </children>
+      </VBox>
+    </VBox>
+</StackPane>

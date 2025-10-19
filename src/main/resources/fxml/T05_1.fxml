@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   
+   <left>
+        <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="199.0" spacing="10" style="-fx-background-color: #1D1D28; -fx-padding: 25;">
+            <Button fx:id="btnDashboard" prefWidth="149.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color: transparent; -fx-border-color: #b0b0b0; -fx-border-width: 1;" styleClass="button-style" text="Dashboard" textFill="WHITE">
+            
+			<font>
+               <Font size="14.0" />
+            </font>
+         </Button>
+            <Button fx:id="btnAcessos" prefWidth="150" style="-fx-background-color: transaperent; -fx-border-color: #b0b0b0; -fx-border-radius: 20;" text="Consultar Acessos" textFill="WHITE">
+            <font>
+               <Font size="14.0" />
+            </font></Button>
+            <Button fx:id="btnPessoas" prefWidth="150" style="-fx-background-color: white; -fx-border-color: transparent; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 1;" text="Pessoas">
+            <font>
+               <Font name="System Bold" size="14.0" />
+            </font></Button>
+            <Button fx:id="btnVeiculos" prefWidth="150" style="-fx-background-color: transaperent; -fx-border-color: #b0b0b0; -fx-border-radius: 20;" text="Veículos" textFill="WHITE">
+            <font>
+               <Font size="14.0" />
+            </font></Button>
+            <Button fx:id="btnApartamentos" prefWidth="150" style="-fx-background-color: transaperent; -fx-border-color: #b0b0b0; -fx-border-radius: 20;" text="Casas" textFill="WHITE">
+            <font>
+               <Font size="14.0" />
+            </font></Button>
+            <Button fx:id="btnLogout" prefWidth="150" style="-fx-background-color: transaperent; -fx-border-color: #b0b0b0; -fx-border-radius: 20;" text="Locais" textFill="WHITE">
+            <font>
+               <Font size="14.0" />
+            </font></Button>
+         <Button fx:id="btnLogout1" layoutX="35.0" layoutY="245.0" prefWidth="150" style="-fx-background-color: transaperent; -fx-border-color: #b0b0b0; -fx-border-radius: 20;" text="Sair" textFill="WHITE">
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Button>
+        </VBox>
+    </left>
+   
+   <center>
+      <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="694.0" prefWidth="609.0">
+         <children>
+         
+                <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Cadastro Pessoa" />
+            <TabPane prefWidth="609.0">
+               <tabs>
+                  <Tab text="Pessoa">
+                     <content>
+                        <VBox prefHeight="557.0" prefWidth="609.0" spacing="15" style="-fx-padding: 20;">
+                           <Label text="Campos obrigatórios *">
+                              <font>
+                                 <Font name="System Bold" size="12.0" />
+                              </font>
+                           </Label>
+                        
+                                        <!-- Tipo de pessoa -->
+                            <HBox spacing="10">
+                                <Label prefHeight="17.0" prefWidth="115.0" text="Tipo:*">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                                <ChoiceBox fx:id="tipoPessoaChoiceBox" prefHeight="25.0" prefWidth="97.0" />
+                            </HBox>
+                        
+                                        <!-- Dados básicos -->
+                            <GridPane hgap="10" vgap="10">
+                                <Label text="Nome:*" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                                <TextField fx:id="nomeField" prefHeight="25.0" prefWidth="289.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                        
+                                            <Label text="CPF:*" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                                <TextField fx:id="cpfField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        
+                                            <Label text="Data de Nascimento:*" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                                <DatePicker fx:id="dataNascimentoPicker" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label text="Telefone" GridPane.rowIndex="3" />
+                              <Label text="Email" GridPane.rowIndex="4" />
+                              <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="132.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <TextField prefHeight="25.0" prefWidth="228.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <columnConstraints>
+                                 <ColumnConstraints />
+                                 <ColumnConstraints />
+                              </columnConstraints>
+                              <rowConstraints>
+                                 <RowConstraints />
+                                 <RowConstraints />
+                                 <RowConstraints />
+                                 <RowConstraints />
+                                 <RowConstraints />
+                              </rowConstraints>
+                            </GridPane>
+                        
+                                        <!-- Campos Visitante -->
+                            <VBox fx:id="visitantePane" spacing="10">
+                                <Label prefHeight="17.0" prefWidth="194.0" text="Morador associado*" />
+                              <ComboBox editable="true" prefHeight="25.0" prefWidth="261.0" />
+                            </VBox>
+                        
+                                        <!-- Campos Prestador -->
+                            <VBox fx:id="prestadorPane" spacing="10">
+                                <Label text="Empresa:" />
+                                <TextField fx:id="empresaField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="414.0" />
+                                <Label text="CNPJ:" />
+                                <TextField fx:id="cnpjField" maxHeight="-Infinity" maxWidth="-Infinity" />
+                              <HBox alignment="CENTER_LEFT" spacing="10.0" />
+                              <HBox alignment="CENTER_LEFT" spacing="10.0" />
+                            </VBox>
+                           <Button mnemonicParsing="false" onAction="#handleAnexarFoto" style="-fx-background-color: #1D1D28; -fx-border-radius: 20; -fx-background-radius: 20;" text="Anexar Imagem*" textFill="WHITE" />
+                        
+                                    </VBox>
+                     </content>
+                  </Tab>
+                  <Tab text="Autorizações">
+                     <content>
+                        <VBox spacing="10.0" style="-fx-padding: 20;">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                 <children>
+                                    <Label text="Loca:l" />
+                                    <ChoiceBox prefHeight="25.0" prefWidth="197.0" />
+                                    <Button style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color: #1D1D28;" text="Adicionar" textFill="WHITE" />
+                                 </children>
+                              </HBox>
+                              <TableView prefHeight="200.0" prefWidth="200.0">
+                                 <columns>
+                                    <TableColumn prefWidth="568.0" text="Local Para Acesso" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </VBox>
+                     </content>
+                  </Tab>
+      			
+      			<Tab text="Veículos">
+                      <content>
+                          <VBox spacing="10" style="-fx-padding: 20;">
+                              <children>
+                                  <HBox spacing="10">
+                                      <TextField fx:id="txtPlaca" prefHeight="25.0" prefWidth="110.0" promptText="Placa" />
+                                      <TextField fx:id="txtModelo" prefHeight="25.0" prefWidth="149.0" promptText="Modelo" />
+                                 <TextField fx:id="txtModelo1" prefHeight="25.0" prefWidth="126.0" promptText="Cor" />
+                                      <Button style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color: #1D1D28;" text="Adicionar" textFill="WHITE" />
+                                  </HBox>
+                              <TableView prefHeight="200.0" prefWidth="200.0">
+                                <columns>
+                                    <TableColumn prefWidth="106.0" text="Placa" />
+                                    <TableColumn prefWidth="167.0" text="Modelo" />
+                                    <TableColumn minWidth="0.0" prefWidth="169.0" text="Cor" />
+                                </columns>
+                              </TableView>
+                              </children>
+                          </VBox>
+                      </content>
+                  </Tab>
+      			
+                 <Tab text="Casas">
+                      <content>
+                          <VBox spacing="10" style="-fx-padding: 20;">
+                              <children>
+                                  <HBox alignment="CENTER_LEFT" spacing="10">
+                                      <TextField fx:id="txtNumero" prefHeight="25.0" prefWidth="92.0" promptText="Número" />
+                                 <Label text="Relacionamento:" />
+                                 <ChoiceBox fx:id="tipoPessoaChoiceBox1" prefHeight="25.0" prefWidth="97.0" />
+                                 <Button style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color: #1D1D28;" text="Adicionar" textFill="WHITE" />
+                                  </HBox>
+                              <TableView prefHeight="200.0" prefWidth="200.0">
+                                 <columns>
+                                    <TableColumn prefWidth="75.0" text="Número" />
+                                    <TableColumn prefWidth="113.0" text="Relacionamento" />
+                                 </columns>
+                              </TableView>
+                              </children>
+                          </VBox>
+                      </content>
+                  </Tab>
+                  <Tab text="Serviços">
+                     <content>
+                        <VBox spacing="10" style="-fx-padding: 20;">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" spacing="10">
+                                 <children>
+                                    <Label prefHeight="17.0" prefWidth="82.0" text="Morador" />
+                                    <ChoiceBox prefHeight="25.0" prefWidth="236.0" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="17.0" prefWidth="569.0" spacing="10.0">
+                                 <children>
+                                    <Label text="Tipo de Serviço" />
+                                    <TextField prefHeight="25.0" prefWidth="176.0" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="5.0" prefWidth="569.0" spacing="10.0">
+                                 <children>
+                                    <Label prefHeight="17.0" prefWidth="82.0" text="Data de Início" />
+                                    <DatePicker prefHeight="25.0" prefWidth="176.0" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="0.0" prefWidth="569.0" spacing="10.0">
+                                 <children>
+                                    <Label prefHeight="17.0" prefWidth="82.0" text="Data de fim" />
+                                    <DatePicker prefHeight="25.0" prefWidth="176.0" />
+                                 </children>
+                              </HBox>
+                              <Button style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color: #1D1D28;" text="Adicionar" textFill="WHITE" />
+                              <TableView prefHeight="200.0" prefWidth="200.0">
+                                 <columns>
+                                    <TableColumn prefWidth="299.0" text="Morador " />
+                                    <TableColumn minWidth="2.0" prefWidth="99.0" text="Tipo de Serviço" />
+                                    <TableColumn minWidth="0.0" prefWidth="90.0" text="Data início" />
+                                    <TableColumn text="Data fim" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </VBox>
+                     </content>
+                  </Tab>
+               </tabs>
+            </TabPane>
+            <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="52.0" prefWidth="550.0" spacing="15.0">
+               <children>
+               
+                                                                      <Button fx:id="salvarButton" prefWidth="100" style="-fx-background-color: #1D1D28; -fx-border-radius: 20; -fx-background-radius: 20;" text="Salvar Tudo" textFill="WHITE" />
+                  <Button fx:id="salvarButton1" lineSpacing="15.0" prefWidth="100.0" style="-fx-background-color: #1D1D28; -fx-border-radius: 20; -fx-background-radius: 20;" text="Cancelar" textFill="WHITE" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
